@@ -34,6 +34,7 @@ bool IsReadingCommand = false;
 int ByteNoRead = 0;
 byte ServoNo = 0;
 bool readServo = false;
+int incomingByte;
 
 //get all servos -> g
 //set to angle b servo0 -> s0b
