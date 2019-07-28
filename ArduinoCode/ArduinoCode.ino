@@ -5,10 +5,6 @@ Servo Servo_1;
 Servo Servo_2;
 Servo Servo_3;
 
-
-//Record the data.
-int Servo3Angle = 0;
-
 void setup() {
   //Start the serial for debug.
   Serial.begin(9600);
@@ -34,7 +30,44 @@ void setup() {
   //Servo_2.write(85);
 }
 
+bool IsReadingCommand = false;
+int ByteNoRead = 0;
+byte ServoNo = 0;
+bool readServo = false;
+
+//get all servos -> g
+//set to angle b servo0 -> s0b
+
+
+String getServoValues()
+{
+  /*User code here*/
+  String str = String("Hello World..!");
+  return str; 
+}
+
+
 void loop() {
-  // put your main code here, to run repeatedly:
+  // see if there's incoming serial data:
+  if (Serial.available() > 0) {
+    incomingByte = Serial.read();
+    ByteNoRead++;
+    if(IsReadingCommand){
+      if(ByteNoRead == 3){
+          Serial.println("Sim");
+          //WriteToServo(ServoNo, incomingByte);
+          ByteNoRead=0;
+          IsReadingCommand=false;
+      }else{
+        ServoNo=incomingByte;
+      }
+    }else{
+      if (incomingByte == 'g') {
+        Serial.println(getServoValues());
+      }else{
+        IsReadingCommand=true;
+      }
+    }
+  }
 
 }
