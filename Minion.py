@@ -63,7 +63,7 @@ engines.SetOffTime = 0.01
 engines.RegulateSpeed()
 
 engines.RobotStop()
-input("Press to Start")
+#input("Press to Start")
 
 LoopNo = 20
 try:
