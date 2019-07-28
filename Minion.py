@@ -73,7 +73,7 @@ try:
         #distance = UltraSound.getUltaSoundDistance()
         
         print("Distance to Base the decsions On = " +str(usDistance.UltraDistance))
-        if(usDistance.UltraDistance > 0.1):
+        if(usDistance.UltraDistance > 0.25):
             print("Forward")
             engines.RobotMoveForward()
             #engines.RobotMoveBack()
