@@ -42,9 +42,9 @@ int incomingByte;
 
 String getServoValues()
 {
-  /*User code here*/
-  String str = String("Hello World..!");
-  return str; 
+  //String str = String("Hello World..!");
+
+  return  String(Servo_0.read()) + ";" + String(Servo_1.read()) + ";" + String(Servo_2.read()) + ";" + String(Servo_3.read()); 
 }
 
 
