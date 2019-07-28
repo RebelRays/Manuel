@@ -46,7 +46,11 @@ String getServoValues()
 
   return  String(Servo_0.read()) + ";" + String(Servo_1.read()) + ";" + String(Servo_2.read()) + ";" + String(Servo_3.read()); 
 }
-
+void WriteToServo(byte ServoNo, byte incomingByte){
+  if (incomingByte == '4') {
+    Servo_2.write(incomingByte);
+  }
+}
 
 void loop() {
   // see if there's incoming serial data:
@@ -55,8 +59,9 @@ void loop() {
     ByteNoRead++;
     if(IsReadingCommand){
       if(ByteNoRead == 3){
-          Serial.println("Sim");
-          //WriteToServo(ServoNo, incomingByte);
+          int read = incomingByte;
+          Serial.println(read);
+          WriteToServo(ServoNo, incomingByte);
           ByteNoRead=0;
           IsReadingCommand=false;
       }else{
