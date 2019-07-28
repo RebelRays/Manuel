@@ -47,7 +47,7 @@ String getServoValues()
   return  String(Servo_0.read()) + ";" + String(Servo_1.read()) + ";" + String(Servo_2.read()) + ";" + String(Servo_3.read()); 
 }
 void WriteToServo(byte ServoNo, byte incomingByte){
-  if (incomingByte == '4') {
+  if (ServoNo == '4') {
     Servo_2.write(incomingByte);
   }
 }
