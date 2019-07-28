@@ -46,15 +46,18 @@ String getServoValues()
 
   return  String(Servo_0.read()) + ";" + String(Servo_1.read()) + ";" + String(Servo_2.read()) + ";" + String(Servo_3.read()); 
 }
-void WriteToServo(byte ServoNo, int angle){
-  if (ServoNo == '4') {
+void WriteToServo(int ServoNo, int angle){
+  if (ServoNo == 4) {
     Servo_3.write(angle);
-  }else if (ServoNo == '3') {
+  }else if (ServoNo == 3) {
     Servo_2.write(angle);
-  }else if (ServoNo == '2') {
+  }else if (ServoNo == 2) {
     Servo_1.write(angle);
-  }else if (ServoNo == '1') {
+  }else if (ServoNo == 1) {
     Servo_0.write(angle);
+  }else{
+     Serial.println("Confused");
+    Serial.println(ServoNo);
   }
 }
 
