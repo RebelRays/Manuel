@@ -74,7 +74,7 @@ void loop() {
           ByteNoRead=0;
           IsReadingCommand=false;
       }else{
-        ServoNo=incomingByte;
+        ServoNo=incomingByte - '0';
       }
     }else{
       if (incomingByte == 'g') {
