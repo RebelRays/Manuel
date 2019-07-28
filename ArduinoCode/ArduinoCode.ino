@@ -26,8 +26,11 @@ void setup() {
   Serial.println(Servo_1.read());
   Serial.print("Servo_0:");
   Serial.println(Servo_0.read());
-  //Servo_3.write(177);
-  //Servo_2.write(85);
+  
+  Servo_0.write(5); //Higher towards ultra sound
+  Servo_1.write(5); //smaller closer to ground
+  Servo_2.write(120); //The more down to wards ground
+  Servo_3.write(176); //The more close
 }
 
 bool IsReadingCommand = false;

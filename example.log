@@ -1,0 +1,9 @@
+2019-07-28 19:01:13,255 DEBUG:	 This message should go to the log file
+2019-07-28 19:01:13,264 INFO:	 So should this
+2019-07-28 19:01:13,264 WARNING:	 And this, too
+2019-07-28 19:04:21,755 DEBUG:	 This message should go to the log file
+2019-07-28 19:04:21,755 INFO:	 So should this
+2019-07-28 19:04:21,756 WARNING:	 And this, too
+2019-07-28 19:06:41,989 DEBUG:	 This message should go to the log file
+2019-07-28 19:06:41,990 INFO:	 So should this
+2019-07-28 19:06:41,991 WARNING:	 And this, too
