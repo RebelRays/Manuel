@@ -30,4 +30,4 @@ class UltraSoundHandler:
             pass
         stop = time.time()
         distance = (stop-start)*170
-        return  distance;
+        return  distance

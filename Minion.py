@@ -5,6 +5,7 @@ import RPi.GPIO as gpio
 import UltraSound
 import Movement
 import logging
+import ArduinoCommunication
 
 logging.basicConfig(filename='example.log',level=logging.DEBUG, format="%(asctime)-15s %(levelname)s:\t %(message)s")
 logging.debug('This message should go to the log file')
@@ -65,24 +66,54 @@ engines.RegulateSpeed()
 engines.RobotStop()
 #input("Press to Start")
 
+# Fix Python 2.x.
+try: 
+    input = raw_input
+except NameError: 
+    pass
+
+ardy = new ArduinoCommunication.ArduinoCommunication()
+
 LoopNo = 20
 try:
     while(LoopNo>0):
         print(LoopNo)
+
+        use_command_line = input("Your command:")
+        user_commands = use_command_line.split(' ')
+
+        for user_command in user_commands:
+            if(user_command.upper() == 'F'):
+                engines.RobotMoveForward()
+            elif(user_command.upper() == 'B'):
+                engines.RobotMoveBack()
+            elif(user_command.upper() == 'L'):
+                engines.RobotMoveLeft()
+            elif(user_command.upper() == 'R'):
+                engines.RobotMoveRight()
+            elif(user_command.upper() == 'G'):
+                ardy.printServoLocations()
+            elif(user_command[0] == 's'):
+                ardy.MoveServo(user_command[0], int(user_command[2:]))
+            
+            time.sleep(0.2)
+            LoopNo=LoopNo-1
+
         #UltraSoundHandler
         #distance = UltraSound.getUltaSoundDistance()
         
-        print("Distance to Base the decsions On = " +str(usDistance.UltraDistance))
-        if(usDistance.UltraDistance > 0.25):
-            print("Forward")
-            engines.RobotMoveForward()
+        #print("Distance to Base the decsions On = " +str(usDistance.UltraDistance))
+        #if(usDistance.UltraDistance > 0.25):
+        #    print("Forward")
+        #    engines.RobotMoveForward()
             #engines.RobotMoveBack()
             #engines.RobotMoveLeft()
-        else:
-            engines.RobotStop()
+        #else:
+        #    engines.RobotStop()
 
         #print(distance)
-        time.sleep(0.2)
-        LoopNo=LoopNo-1
-finally:  
+        #time.sleep(0.2)
+        #LoopNo=LoopNo-1
+finally:
+    ardy.cleanup()  
     gpio.cleanup() # this ensures a clean exit
