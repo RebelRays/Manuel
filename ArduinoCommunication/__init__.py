@@ -17,7 +17,7 @@ class ArduinoCommunication:
     def MoveServo(self, ServoNo, Angle):
         ser.write(b's')
         ser.write(ServoNo)
-        ser.write(bytes[Angle][0])
+        ser.write(bytes([Angle])[0])
         time.sleep(0.5)
         return ser.readline()
     def cleanup(self):
