@@ -35,7 +35,7 @@ void setup() {
 
 bool IsReadingCommand = false;
 int ByteNoRead = 0;
-byte ServoNo = 0;
+int ServoNo = 0;
 int incomingByte = 0;
 int LastAngle= 0;
 int NoOfCommandsExecuted = 0;
