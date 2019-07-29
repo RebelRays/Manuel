@@ -94,7 +94,8 @@ try:
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
             elif(user_command[0] == 's'):
-                ardy.MoveServo(user_command[0], int(user_command[2:]))
+                res = ardy.MoveServo(user_command[1], int(user_command[2:]))
+                print(res)
             elif(user_command.upper() == 'E'):
                 ardy.printAll()
             elif(user_command.upper() == 'Q'):
