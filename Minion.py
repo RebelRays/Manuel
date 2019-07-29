@@ -93,18 +93,6 @@ try:
                 engines.RobotMoveRight()
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
-            elif(user_command[0].upper() == 'S'):
-                ardy.MoveServo(user_command[1], int(user_command[2:]))
-            elif(user_command.upper() == 'P'):
-                ardy.pingArdy()
-            elif(user_command.upper() == 'H'):
-                ardy.printLastCommand()
-            elif(user_command.upper() == "READ"):
-                print("Checking Serial reply")
-                ardy.printAll()
-            elif(user_command.upper() == 'Q'):
-                LoopNo=0
-                break
             elif(user_command.upper() == 'START'):
                 ardy.MoveServo('1', 5)
                 time.sleep(0.5)
@@ -114,6 +102,20 @@ try:
                 time.sleep(0.5)
                 ardy.MoveServo('4', 172)
                 time.sleep(0.5)
+            elif(user_command.upper() == "READ"):
+                print("Checking Serial reply")
+                ardy.printAll()
+            elif(user_command[0].upper() == 'S'):
+                ardy.MoveServo(user_command[1], int(user_command[2:]))
+            elif(user_command.upper() == 'P'):
+                ardy.pingArdy()
+            elif(user_command.upper() == 'H'):
+                ardy.printLastCommand()
+            
+            elif(user_command.upper() == 'Q'):
+                LoopNo=0
+                break
+            
             time.sleep(0.2)
             LoopNo=LoopNo-1
 
