@@ -95,6 +95,11 @@ try:
                 ardy.printServoLocations()
             elif(user_command[0] == 's'):
                 ardy.MoveServo(user_command[0], int(user_command[2:]))
+            elif(user_command.upper() == 'E'):
+                ardy.printAll()
+            elif(user_command.upper() == 'Q'):
+                LoopNo=1
+                break
             
             time.sleep(0.2)
             LoopNo=LoopNo-1

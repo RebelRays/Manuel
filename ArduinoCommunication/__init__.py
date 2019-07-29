@@ -11,7 +11,7 @@ class ArduinoCommunication:
     def printServoLocations(self):
         ser.write(b'g')
         time.sleep(0.5)
-        Line = ser.readline()
+        Line = ser.readlines()
         print(Line)
 
     def MoveServo(self, ServoNo, Angle):
@@ -20,5 +20,8 @@ class ArduinoCommunication:
         ser.write(bytes([Angle])[0])
         time.sleep(0.5)
         return ser.readline()
+    def printAll(self):
+        if ser.in_waiting() > 0:
+            print(ser.readlines())
     def cleanup(self):
         ser.close()
