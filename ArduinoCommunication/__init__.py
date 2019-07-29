@@ -16,7 +16,9 @@ class ArduinoCommunication:
 
     def MoveServo(self, ServoNo, Angle):
         ser.write(b's')
+        print(ServoNo)
         ser.write(ServoNo)
+        print(bytes([Angle])[0])
         ser.write(bytes([Angle])[0])
         time.sleep(0.5)
         return ser.readline()
