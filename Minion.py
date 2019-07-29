@@ -93,6 +93,8 @@ try:
                 engines.RobotMoveRight()
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
+            elif(user_command.upper() == 'U'):
+               print("Ultrasound Distance = " +str(usDistance.UltraDistance))
             elif(user_command.upper() == 'START'):
                 ardy.MoveServo('1', 5)
                 time.sleep(0.5)
