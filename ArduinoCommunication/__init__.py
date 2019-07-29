@@ -21,7 +21,7 @@ class ArduinoCommunication:
         time.sleep(0.5)
         return ser.readline()
     def printAll(self):
-        if ser.in_waiting() > 0:
+        if ser.in_waiting > 0:
             print(ser.readlines())
     def cleanup(self):
         ser.close()
