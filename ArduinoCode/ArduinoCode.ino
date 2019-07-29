@@ -74,7 +74,7 @@ void loop() {
           IsReadingCommand=false;
       }else{
         ServoNo=incomingByte - '0';
-        Serial.println("Setting ServoNo to " + Serial.println(ServoNo) + ", from " + Serial.println(incomingByte))
+        Serial.println("Setting ServoNo to " + Serial.println(ServoNo) + ", from " + Serial.println(incomingByte));
       }
     }else{
       if (incomingByte == 'g') {
