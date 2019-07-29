@@ -1,5 +1,6 @@
 #include <Servo.h> 
 
+//2
 Servo Servo_0;
 Servo Servo_1;
 Servo Servo_2;
@@ -33,8 +34,8 @@ void setup() {
   Servo_3.write(176); //The more close
 }
 
+bool LoadedServoNo = false;
 bool IsReadingCommand = false;
-int ByteNoRead = 0;
 int ServoNo = 0;
 int incomingByte = 0;
 int LastAngle= 0;
@@ -63,17 +64,19 @@ void loop() {
   // see if there's incoming serial data:
   if (Serial.available() > 0) {
     incomingByte = Serial.read();
+    Serial.println("Serial.read = " + String(incomingByte));
+
     if(IsReadingCommand){
-      ByteNoRead++;
-      if(ByteNoRead == 3){
+      if(LoadedServoNo){
           LastAngle = incomingByte;
           Serial.println(LastAngle);
           NoOfCommandsExecuted++;
           WriteToServo(ServoNo, LastAngle);
-          ByteNoRead=0;
           IsReadingCommand=false;
+          LoadedServoNo=false;
       }else{
         ServoNo=incomingByte - '0';
+        LoadedServoNo=true;
         Serial.println("Setting ServoNo to " + String(ServoNo) + ", from " + String(incomingByte));
       }
     }else{
@@ -85,12 +88,12 @@ void loop() {
         Serial.println(String(NoOfCommandsExecuted) + ";" + String(ServoNo) + ";" + String(LastAngle));
       }else if (incomingByte == 's') {
         IsReadingCommand=true;
-        ByteNoRead=1;
       }
       else{
         Serial.println("Unknown Command");
         Serial.println(incomingByte);
         Serial.println(String(incomingByte));
+        LoadedServoNo=false;
       }
     }
   }
