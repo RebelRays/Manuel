@@ -30,9 +30,9 @@ class ArduinoCommunication:
             print(ser.readlines())
     def pingArdy(self):
         print("Ping Ardy")
-        reply = ser.write(b'p')
+        ser.write(b'p')
         time.sleep(1)
-        print(reply)
+        print(ser.readlines())
     def printLastCommand(self):
         print("getLastCommand")
         ser.write(b'r')
