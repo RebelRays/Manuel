@@ -95,17 +95,27 @@ try:
                 ardy.printServoLocations()
             elif(user_command.upper() == 'U'):
                print("Ultrasound Distance = " +str(usDistance.UltraDistance))
-            elif(user_command.upper() == 'START'):
+            elif(user_command.upper() == 'SIDE'):
+                ardy.MoveServo('1', 10)
+                ardy.MoveServo('2', 10)
+                ardy.MoveServo('3', 80)
+                ardy.MoveServo('4', 160)
                 ardy.MoveServo('1', 5)
-                time.sleep(0.5)
                 ardy.MoveServo('2', 5)
-                time.sleep(0.5)
                 ardy.MoveServo('3', 70)
-                time.sleep(0.5)
                 ardy.MoveServo('4', 172)
-                time.sleep(0.5)
+            elif(user_command.upper() == 'START'):
+                ardy.MoveServo('1', 87)
+                ardy.MoveServo('2', 160)
+                ardy.MoveServo('3', 60)
+                ardy.MoveServo('4', 166)
+
+                ardy.MoveServo('1', 90)
+                ardy.MoveServo('2', 177)
+                ardy.MoveServo('3', 70)
+                ardy.MoveServo('4', 176)
             elif(user_command.upper() == "READ"):
-                print("Checking Serial reply")
+                #print("Checking Serial reply")
                 ardy.printAll()
             elif(user_command[0].upper() == 'S'):
                 ardy.MoveServo(user_command[1], int(user_command[2:]))

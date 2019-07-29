@@ -19,18 +19,25 @@ void setup() {
   //Set the pin 3 to input
   pinMode(3, INPUT);
   
-  Serial.print("Servo_3:");
-  Serial.println(Servo_3.read());
-  Serial.print("Servo_2:");
-  Serial.println(Servo_2.read());
-  Serial.print("Servo_1:");
-  Serial.println(Servo_1.read());
-  Serial.print("Servo_0:");
-  Serial.println(Servo_0.read());
+  Serial.print("setup()");
+  //Serial.print("Servo_3:");
+  //Serial.println(Servo_3.read());
+  //Serial.print("Servo_2:");
+  //Serial.println(Servo_2.read());
+  //Serial.print("Servo_1:");
+  //Serial.println(Servo_1.read());
+  //Serial.print("Servo_0:");
+  //Serial.println(Servo_0.read());
   
-  Servo_0.write(5); //Higher towards ultra sound
-  Servo_1.write(5); //smaller closer to ground
-  Servo_2.write(120); //The more down to wards ground
+  //90;180;70;172
+  Servo_0.write(87); //Higher towards ultra sound
+  Servo_1.write(175); //smaller closer to ground
+  Servo_2.write(67); //The more down to wards ground
+  Servo_3.write(170); //The more close
+
+  Servo_0.write(90); //Higher towards ultra sound
+  Servo_1.write(177); //smaller closer to ground
+  Servo_2.write(70); //The more down to wards ground
   Servo_3.write(176); //The more close
 }
 
@@ -64,7 +71,7 @@ void loop() {
   // see if there's incoming serial data:
   if (Serial.available() > 0) {
     incomingByte = Serial.read();
-    Serial.println("Serial.read = " + String(incomingByte));
+    //Serial.println("Serial.read = " + String(incomingByte));
 
     if(IsReadingCommand){
       if(LoadedServoNo){
@@ -77,7 +84,7 @@ void loop() {
       }else{
         ServoNo=incomingByte;// - '0';
         LoadedServoNo=true;
-        Serial.println("Setting ServoNo to " + String(ServoNo) + ", from " + String(incomingByte));
+        //Serial.println("Setting ServoNo to " + String(ServoNo) + ", from " + String(incomingByte));
       }
     }else{
       if (incomingByte == 'g') {

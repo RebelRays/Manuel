@@ -15,22 +15,22 @@ except:
 class ArduinoCommunication:
     def printServoLocations(self):
         ser.write(b'g')
-        time.sleep(1)
+        time.sleep(.5)
         #Line = ser.readlines()
         #print(Line)
 
     def MoveServo(self, ServoNo, Angle):
         ser.write(b's')
-        print("Sending ServoNo")
-        print(ServoNo)
+        #print("Sending ServoNo")
+        #print(ServoNo)
         ser.write(bytes([int(ServoNo)]))
-        print("Sending Angle")
-        print(Angle)
-        print("encoded to")
+        #print("Sending Angle")
+        #print(Angle)
+        #print("encoded to")
         bangle = bytes([Angle])
-        print(bangle)
+        #print(bangle)
         ser.write(bangle)
-        time.sleep(1)
+        time.sleep(0.5)
         #return ser.readline()
     def printAll(self):
         while ser.in_waiting > 0:
@@ -43,7 +43,7 @@ class ArduinoCommunication:
     def printLastCommand(self):
         print("getLastCommand")
         ser.write(b'r')
-        time.sleep(1)
+        time.sleep(0.5)
         #print(ser.readlines())
     def cleanup(self):
         print("ArduinoCommunication -> Cleanup")
