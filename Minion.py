@@ -72,7 +72,7 @@ try:
 except NameError: 
     pass
 
-ardy = new ArduinoCommunication.ArduinoCommunication()
+ardy = ArduinoCommunication.ArduinoCommunication()
 
 LoopNo = 20
 try:
