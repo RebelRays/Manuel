@@ -83,9 +83,13 @@ void loop() {
         Serial.println("Pong");
       }else if (incomingByte == 'r') {
         Serial.println(String(NoOfCommandsExecuted) + ";" + String(ServoNo) + ";" + String(LastAngle));
+      }else if (incomingByte == 's') {
+        IsReadingCommand=true;
       }
       else{
-        IsReadingCommand=true;
+        Serial.println("Unknown Command");
+        Serial.println(incomingByte);
+        Serial.println(String(incomingByte));
       }
     }
   }
