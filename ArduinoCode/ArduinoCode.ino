@@ -36,13 +36,9 @@ void setup() {
 bool IsReadingCommand = false;
 int ByteNoRead = 0;
 byte ServoNo = 0;
-bool readServo = false;
-int incomingByte;
-
-//get all servos -> g
-//set to angle b servo0 -> s0b
-
-
+int incomingByte = 0;
+int LastAngle= 0;
+int NoOfCommandsExecuted = 0;
 String getServoValues()
 {
   //String str = String("Hello World..!");
@@ -71,9 +67,10 @@ void loop() {
     ByteNoRead++;
     if(IsReadingCommand){
       if(ByteNoRead == 3){
-          int read = incomingByte;
-          Serial.println(read);
-          WriteToServo(ServoNo, incomingByte);
+          LastAngle = incomingByte;
+          Serial.println(LastAngle);
+          NoOfCommandsExecuted++;
+          WriteToServo(ServoNo, LastAngle);
           ByteNoRead=0;
           IsReadingCommand=false;
       }else{
@@ -82,7 +79,12 @@ void loop() {
     }else{
       if (incomingByte == 'g') {
         Serial.println(getServoValues());
-      }else{
+      }else if (incomingByte == 'p') {
+        Serial.println("Pong");
+      }else if (incomingByte == 'r') {
+        Serial.println(String(NoOfCommandsExecuted) + ";" + String(ServoNo) + ";" + String(LastAngle));
+      }
+      else{
         IsReadingCommand=true;
       }
     }

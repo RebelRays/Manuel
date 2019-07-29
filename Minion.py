@@ -93,10 +93,13 @@ try:
                 engines.RobotMoveRight()
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
-            elif(user_command[0] == 's'):
+            elif(user_command[0].upper() == 'S'):
                 res = ardy.MoveServo(user_command[1], int(user_command[2:]))
+                print('Reply from ardy')
                 print(res)
-            elif(user_command.upper() == 'E'):
+            elif(user_command.upper() == 'P'):
+                ardy.printAll()
+            elif(user_command.upper() == 'P'):
                 ardy.printAll()
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
