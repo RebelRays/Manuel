@@ -63,8 +63,8 @@ void loop() {
   // see if there's incoming serial data:
   if (Serial.available() > 0) {
     incomingByte = Serial.read();
-    ByteNoRead++;
     if(IsReadingCommand){
+      ByteNoRead++;
       if(ByteNoRead == 3){
           LastAngle = incomingByte;
           Serial.println(LastAngle);
@@ -85,6 +85,7 @@ void loop() {
         Serial.println(String(NoOfCommandsExecuted) + ";" + String(ServoNo) + ";" + String(LastAngle));
       }else if (incomingByte == 's') {
         IsReadingCommand=true;
+        ByteNoRead=1;
       }
       else{
         Serial.println("Unknown Command");

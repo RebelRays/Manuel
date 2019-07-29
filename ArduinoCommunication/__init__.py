@@ -27,7 +27,7 @@ class ArduinoCommunication:
         print("Sending Angle")
         print(Angle)
         print("encoded to")
-        bangle = (bytes([Angle])[0])
+        bangle = bytes([Angle])
         print(bangle)
         ser.write(bangle)
         time.sleep(1)
