@@ -98,9 +98,11 @@ try:
                 print('Reply from ardy')
                 print(res)
             elif(user_command.upper() == 'P'):
-                ardy.printAll()
-            elif(user_command.upper() == 'P'):
-                ardy.printAll()
+                ardy.pingArdy()
+            elif(user_command.upper() == 'H'):
+                ardy.printLastCommand
+            elif(user_command.upper() == 'H'):
+                ardy.printServoLocations()
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
                 break
