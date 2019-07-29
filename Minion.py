@@ -100,9 +100,7 @@ try:
             elif(user_command.upper() == 'P'):
                 ardy.pingArdy()
             elif(user_command.upper() == 'H'):
-                ardy.printLastCommand
-            elif(user_command.upper() == 'H'):
-                ardy.printServoLocations()
+                ardy.printLastCommand()
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
                 break

@@ -12,7 +12,6 @@ class UltraSoundHandler:
         t = Timer(0.001, self.LoopUltraSound)
         t.start()
         return
-
     def LoopUltraSound(self):
         while True:
             #print("Will call getUltaSoundDistance")
