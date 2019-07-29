@@ -14,7 +14,7 @@ class HandleEngines:
     IN2 = -1
     IN3 = -1
     IN4 = -1
-    SetOnTime=0.03
+    SetOnTime=0.04
     SetOffTime=0.01
 
     """description of class"""

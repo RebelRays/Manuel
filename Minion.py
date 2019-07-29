@@ -6,6 +6,8 @@ import UltraSound
 import Movement
 import logging
 import ArduinoCommunication
+import Camera
+import WifiSignals
 
 logging.basicConfig(filename='example.log',level=logging.DEBUG, format="%(asctime)-15s %(levelname)s:\t %(message)s")
 logging.debug('This message should go to the log file')
@@ -73,7 +75,8 @@ except NameError:
     pass
 
 ardy = ArduinoCommunication.ArduinoCommunication()
-
+camera = Camera.CameraHandler()
+Wifi = WifiSignals.WifiSignals()
 LoopNo = 20
 try:
     while(LoopNo>0):
@@ -114,6 +117,15 @@ try:
                 ardy.MoveServo('2', 177)
                 ardy.MoveServo('3', 70)
                 ardy.MoveServo('4', 176)
+            elif(user_command.upper() == 'DOWN'):
+                ardy.MoveServo('1', 90)
+                ardy.MoveServo('2', 5)
+                ardy.MoveServo('3', 40)
+                ardy.MoveServo('4', 166)
+            elif(user_command.upper() == 'PIC'):
+                camera.takePicture()
+            elif(user_command.upper() == 'WIFI'):
+                Wifi.Record()
             elif(user_command.upper() == "READ"):
                 #print("Checking Serial reply")
                 ardy.printAll()
@@ -128,7 +140,7 @@ try:
                 LoopNo=0
                 break
             
-            time.sleep(0.2)
+            time.sleep(0.5)
             LoopNo=LoopNo-1
             engines.RobotStop()
         #UltraSoundHandler
