@@ -75,7 +75,7 @@ void loop() {
           IsReadingCommand=false;
           LoadedServoNo=false;
       }else{
-        ServoNo=incomingByte - '0';
+        ServoNo=incomingByte;// - '0';
         LoadedServoNo=true;
         Serial.println("Setting ServoNo to " + String(ServoNo) + ", from " + String(incomingByte));
       }
