@@ -35,7 +35,7 @@ class WifiSignals:
         filename = '/DataRecording/Wifi.csv'
         LocationFileExist = os.path.isfile(filename) 
         with open(filename, 'a') as csvfile:
-            fieldnames = ['Time', 'ESSID', 'Quality', 'SignalLevel', 'FrequencyInMHZ', 'DistanceCalc']
+            fieldnames = ['Time', 'ESSID', 'Address', 'Quality', 'SignalLevel', 'FrequencyInMHZ', 'DistanceCalc', 'LastBeacon']
             writer = csv.DictWriter(csvfile, delimiter=";", lineterminator='\n', fieldnames=fieldnames)
             if(not LocationFileExist):
                 writer.writeheader()
@@ -48,7 +48,12 @@ class WifiSignals:
                 if(len(ESSIDSplit) == 1):
                     continue
                 ESSID = ESSIDSplit[1].split("\"")[0]
-            
+                
+                AddressSplit = CellContent.split("Address: ")
+                if(len(ESSIDSplit) == 1):
+                    continue
+                Address = AddressSplit[1].split("\n")[0]
+                
                 QualitySplit = CellContent.split("Quality=")
                 Quality = QualitySplit[1].split("/70")[0]
 
@@ -59,5 +64,9 @@ class WifiSignals:
                 Frequency = FrequencySplit[1].split(" GHz")[0]
                 FrequencyInMHZ = float(Frequency)*1000
 
+                LastBeacon=''
+                LastBeaconSplit=CellContent.split("Last beacon: ")
+                if(len(ESSIDSplit) > 1):
+                    LastBeacon=LastBeaconSplit.split("ms")[0]
                 distance=calculateDistance(float(SignalLevel),FrequencyInMHZ)
-                writer.writerow({'Time': wifidateTime, 'ESSID': ESSID, 'Quality': Quality, 'SignalLevel':SignalLevel, 'FrequencyInMHZ':FrequencyInMHZ, 'DistanceCalc':distance})
+                writer.writerow({'Time': wifidateTime, 'ESSID': ESSID, 'Address':Address, 'Quality': Quality, 'SignalLevel':SignalLevel, 'FrequencyInMHZ':FrequencyInMHZ, 'DistanceCalc':distance, 'LastBeacon':LastBeacon})
