@@ -1,7 +1,7 @@
 import serial
 import time
 
-serialport = "/dev/ttyACM1" #"COM3"
+serialport = "/dev/ttyACM0" #"COM3"
 ser = serial.Serial(serialport, 9800, timeout=1)
 
 ##ser.close()
