@@ -94,9 +94,7 @@ try:
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
             elif(user_command[0].upper() == 'S'):
-                res = ardy.MoveServo(user_command[1], int(user_command[2:]))
-                print('Reply from ardy')
-                print(res)
+                ardy.MoveServo(user_command[1], int(user_command[2:]))
             elif(user_command.upper() == 'P'):
                 ardy.pingArdy()
             elif(user_command.upper() == 'H'):
