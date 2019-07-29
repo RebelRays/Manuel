@@ -1,8 +1,13 @@
 import serial
 import time
 
-serialport = "/dev/ttyACM1" #"COM3"
-ser = serial.Serial(serialport, 9800, timeout=1)
+serialport = "/dev/ttyACM0" #"COM3"
+
+
+try: 
+    ser = serial.Serial(serialport, 9800, timeout=1)
+except NameError: 
+    ser = serial.Serial("/dev/ttyACM1", 9800, timeout=1)
 
 ##ser.close()
 
