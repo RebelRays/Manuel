@@ -25,6 +25,8 @@ class ArduinoCommunication:
         print(ServoNo)
         ser.write(ServoNo)
         print("Sending Angle")
+        print(Angle)
+        print("encoded to")
         bangle = (bytes([Angle])[0])
         print(bangle)
         ser.write(bangle)
