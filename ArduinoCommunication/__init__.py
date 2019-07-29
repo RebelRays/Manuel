@@ -16,8 +16,8 @@ class ArduinoCommunication:
     def printServoLocations(self):
         ser.write(b'g')
         time.sleep(1)
-        Line = ser.readlines()
-        print(Line)
+        #Line = ser.readlines()
+        #print(Line)
 
     def MoveServo(self, ServoNo, Angle):
         ser.write(b's')
@@ -29,20 +29,20 @@ class ArduinoCommunication:
         print(bangle)
         ser.write(bangle)
         time.sleep(1)
-        return ser.readline()
+        #return ser.readline()
     def printAll(self):
-        if ser.in_waiting > 0:
-            print(ser.readlines())
+        while ser.in_waiting > 0:
+            print(ser.readline())
     def pingArdy(self):
         print("Ping Ardy")
         ser.write(b'p')
         time.sleep(1)
-        print(ser.readlines())
+        #print(ser.readlines())
     def printLastCommand(self):
         print("getLastCommand")
         ser.write(b'r')
         time.sleep(1)
-        print(ser.readlines())
+        #print(ser.readlines())
     def cleanup(self):
         print("ArduinoCommunication -> Cleanup")
         ser.close()

@@ -101,6 +101,9 @@ try:
                 ardy.pingArdy()
             elif(user_command.upper() == 'H'):
                 ardy.printLastCommand()
+            elif(user_command.upper() == "READ"):
+                print("Checking Serial reply")
+                ardy.printAll()
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
                 break
