@@ -105,7 +105,15 @@ try:
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
                 break
-            
+            elif(user_command.upper() == 'START'):
+                ardy.MoveServo('1', 5)
+                time.sleep(0.5)
+                ardy.MoveServo('2', 5)
+                time.sleep(0.5)
+                ardy.MoveServo('3', 70)
+                time.sleep(0.5)
+                ardy.MoveServo('4', 172)
+                time.sleep(0.5)
             time.sleep(0.2)
             LoopNo=LoopNo-1
 
