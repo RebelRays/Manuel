@@ -23,7 +23,7 @@ class ArduinoCommunication:
         ser.write(b's')
         print("Sending ServoNo")
         print(ServoNo)
-        ser.write(ServoNo)
+        ser.write(bytes([int(ServoNo)]))
         print("Sending Angle")
         print(Angle)
         print("encoded to")
