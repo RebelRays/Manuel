@@ -130,7 +130,7 @@ try:
             
             time.sleep(0.2)
             LoopNo=LoopNo-1
-
+            engines.RobotStop()
         #UltraSoundHandler
         #distance = UltraSound.getUltaSoundDistance()
         
