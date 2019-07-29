@@ -99,7 +99,7 @@ try:
             elif(user_command.upper() == 'E'):
                 ardy.printAll()
             elif(user_command.upper() == 'Q'):
-                LoopNo=1
+                LoopNo=0
                 break
             
             time.sleep(0.2)

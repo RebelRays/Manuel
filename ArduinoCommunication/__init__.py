@@ -24,4 +24,5 @@ class ArduinoCommunication:
         if ser.in_waiting > 0:
             print(ser.readlines())
     def cleanup(self):
+        print("ArduinoCommunication -> Cleanup")
         ser.close()
