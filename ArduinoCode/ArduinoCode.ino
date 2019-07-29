@@ -55,8 +55,7 @@ void WriteToServo(int ServoNo, int angle){
   }else if (ServoNo == 1) {
     Servo_0.write(angle);
   }else{
-     Serial.println("Confused");
-    Serial.println(ServoNo);
+     Serial.println("Confused, ServoNo = " + String(ServoNo) + ", angle=" + String(angle)  );
   }
 }
 
@@ -75,6 +74,7 @@ void loop() {
           IsReadingCommand=false;
       }else{
         ServoNo=incomingByte - '0';
+        Serial.println("Setting ServoNo to " + Serial.println(ServoNo) + ", from " + Serial.println(incomingByte))
       }
     }else{
       if (incomingByte == 'g') {
