@@ -9,7 +9,7 @@ class CameraHandler:
     def takePicture(self):
         pi_camera.resolution = (64, 64)
         now_Str = datetime.today().strftime('%Y%m%d-%H%M%S')
-        pi_camera.capture('/DataRecording/Images/%s.png' % now_Str)
+        pi_camera.capture('./DataRecording/Images/%s.png' % now_Str)
         pi_camera.close()
     
     
