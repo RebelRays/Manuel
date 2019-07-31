@@ -9,7 +9,8 @@ class CameraHandler:
     def takePicture(self):
         pi_camera = PiCamera()
         try:
-            pi_camera.resolution = (1640,1232)
+            pi_camera.resolution = (3280,2464)
+            camera.start_preview()
             now_Str = datetime.today().strftime('%Y%m%d-%H%M%S')
             sleep(2)
             pi_camera.capture('./DataRecording/Images/%s.png' % now_Str)
