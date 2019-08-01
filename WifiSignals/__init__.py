@@ -42,6 +42,7 @@ class WifiSignals:
         
         wifidateTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with open(filename, 'a') as csvfile:
+            writer = csv.DictWriter(csvfile, delimiter=";", lineterminator='\n', fieldnames=fieldnames)
             for CellContent in wifiContent.split("Cell"):
                 #ESSID, Quality, Signal level
                 ESSIDSplit = CellContent.split("ESSID:\"")
@@ -66,7 +67,7 @@ class WifiSignals:
 
                 LastBeacon=''
                 LastBeaconSplit=CellContent.split("Last beacon: ")[1]
-                print(LastBeaconSplit)
+                #print(LastBeaconSplit)
                 if(len(ESSIDSplit) > 1):
                     LastBeacon=LastBeaconSplit.split("ms")[0]
                 distance=calculateDistance(float(SignalLevel),FrequencyInMHZ)
