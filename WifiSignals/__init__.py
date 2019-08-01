@@ -66,6 +66,7 @@ class WifiSignals:
 
                 LastBeacon=''
                 LastBeaconSplit=CellContent.split("Last beacon: ")
+                print(LastBeaconSplit)
                 if(len(ESSIDSplit) > 1):
                     LastBeacon=LastBeaconSplit.split("ms")[0]
                 distance=calculateDistance(float(SignalLevel),FrequencyInMHZ)
