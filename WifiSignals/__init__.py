@@ -32,7 +32,7 @@ class WifiSignals:
             wifiContent = getWifiContent()
             Cells = wifiContent.split("Cell")
 
-        filename = '/DataRecording/Wifi.csv'
+        filename = './DataRecording/Wifi.csv'
         LocationFileExist = os.path.isfile(filename) 
         with open(filename, 'a') as csvfile:
             fieldnames = ['Time', 'ESSID', 'Address', 'Quality', 'SignalLevel', 'FrequencyInMHZ', 'DistanceCalc', 'LastBeacon']

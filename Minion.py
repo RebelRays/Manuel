@@ -106,7 +106,7 @@ try:
                 ardy.MoveServo('1', 5)
                 ardy.MoveServo('2', 5)
                 ardy.MoveServo('3', 70)
-                ardy.MoveServo('4', 172)
+                ardy.MoveServo('4', 160)
             elif(user_command.upper() == 'START'):
                 ardy.MoveServo('1', 87)
                 ardy.MoveServo('2', 160)
@@ -116,7 +116,7 @@ try:
                 ardy.MoveServo('1', 90)
                 ardy.MoveServo('2', 177)
                 ardy.MoveServo('3', 70)
-                ardy.MoveServo('4', 176)
+                ardy.MoveServo('4', 60)
             elif(user_command.upper() == 'DOWN'):
                 ardy.MoveServo('1', 90)
                 ardy.MoveServo('2', 5)
