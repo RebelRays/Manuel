@@ -65,7 +65,7 @@ class WifiSignals:
                 FrequencyInMHZ = float(Frequency)*1000
 
                 LastBeacon=''
-                LastBeaconSplit=CellContent.split("Last beacon: ")
+                LastBeaconSplit=CellContent.split("Last beacon: ")[1]
                 print(LastBeaconSplit)
                 if(len(ESSIDSplit) > 1):
                     LastBeacon=LastBeaconSplit.split("ms")[0]
