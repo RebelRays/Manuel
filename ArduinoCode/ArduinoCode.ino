@@ -6,6 +6,11 @@ Servo Servo_1;
 Servo Servo_2;
 Servo Servo_3;
 
+int MovingServoNo = 0;
+int PreciouseServoAngle = 0;
+int AimForAngles[4];
+Servo servos[4];
+
 void setup() {
   //Start the serial for debug.
   Serial.begin(9600);
@@ -15,9 +20,12 @@ void setup() {
   Servo_1.attach(5);
   Servo_2.attach(6);
   Servo_3.attach(7);
-  
+  servos[0] = Servo_0;//{Servo_0, Servo_1, Servo_2, Servo_3};
+  servos[1] = Servo_1;
+  servos[2] = Servo_2;
+  servos[3] = Servo_3;
   //Set the pin 3 to input
-  pinMode(3, INPUT);
+  //pinMode(3, INPUT);
   
   Serial.print("setup()");
   //Serial.print("Servo_3:");
@@ -31,15 +39,30 @@ void setup() {
   
   //90;180;70;172
   Servo_0.write(87); //Higher towards ultra sound
+  delay(500);
   Servo_1.write(175); //smaller closer to ground
+  delay(500);
   Servo_2.write(67); //The more down to wards ground
+  delay(500);
   Servo_3.write(170); //The more close
 
+  AimForAngles[0]=90;
+  AimForAngles[1]=177;
+  AimForAngles[2]=70;
+  AimForAngles[3]=176;
+
   Servo_0.write(90); //Higher towards ultra sound
+  delay(300);
   Servo_1.write(177); //smaller closer to ground
+  delay(300);
   Servo_2.write(70); //The more down to wards ground
-  Servo_3.write(176); //The more close
+  delay(300);
+  Servo_3.write(176); //The more, the more up
+  Serial.print("setup_complete()");
 }
+
+
+
 
 bool LoadedServoNo = false;
 bool IsReadingCommand = false;
@@ -50,7 +73,6 @@ int NoOfCommandsExecuted = 0;
 String getServoValues()
 {
   //String str = String("Hello World..!");
-
   return  String(Servo_0.read()) + ";" + String(Servo_1.read()) + ";" + String(Servo_2.read()) + ";" + String(Servo_3.read()); 
 }
 void WriteToServo(int ServoNo, int angle){
@@ -67,6 +89,7 @@ void WriteToServo(int ServoNo, int angle){
   }
 }
 
+
 void loop() {
   // see if there's incoming serial data:
   if (Serial.available() > 0) {
@@ -78,7 +101,9 @@ void loop() {
           LastAngle = incomingByte;
           Serial.println(LastAngle);
           NoOfCommandsExecuted++;
-          WriteToServo(ServoNo, LastAngle);
+
+          AimForAngles[ServoNo-1]=LastAngle;
+          //WriteToServo(ServoNo, LastAngle);
           IsReadingCommand=false;
           LoadedServoNo=false;
       }else{
@@ -103,6 +128,20 @@ void loop() {
         LoadedServoNo=false;
       }
     }
+  }else{
+    //Time to move
+    for(int i=0;i<4;i++){
+      int currentAngle = servos[i].read();
+      if(AimForAngles[i] != currentAngle){
+        servos[i].write(AimForAngles[i]);
+        delay(500);
+        if(currentAngle == servos[i].read()){ //Stuck --> accept it
+          Serial.println("Not Moving: Servo No: " + i);
+          AimForAngles[i] = currentAngle;
+          servos[i].write(currentAngle);
+        }
+      }
+    }
   }
-
+  delay(10);
 }
