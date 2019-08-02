@@ -50,6 +50,36 @@ class ArduinoCommunication:
         print(AngleString[i])
         #time.sleep(0.5)
         #return ser.readline()
+    def MoveServo2(self, ServoNo, Angle):
+        ser.writelines
+        ser.write(b's')
+        servoStr = ServoNo.encode('ascii')
+        print("Servo")
+        print(servoStr)
+        ser.write(servoStr)
+        AngleString = str(Angle).encode('utf-8')
+        i = 0
+        print("Sending Angle")
+        if(Angle<100):
+            print(b'0')
+            ser.write(b'0')
+        else:
+            ser.write(AngleString[i])
+            print(AngleString[i])
+            i=i+1
+        
+        if(Angle<10):
+            print(b'0')
+            ser.write(b'0')
+        else:
+            ser.write(AngleString[i])
+            print(AngleString[i])
+            i=i+1
+
+        ser.write(AngleString[i])
+        print(AngleString[i])
+        #time.sleep(0.5)
+        #return ser.readline()
     def printAll(self):
         while ser.in_waiting > 0:
             print(ser.readline())
