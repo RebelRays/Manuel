@@ -29,15 +29,15 @@ class ArduinoCommunication:
         if(Angle<100):
             ser.write(b'0')
         else:
-            ser.write(Angle[i])
+            ser.write(AngleString[i])
             i=i+1
         
         if(Angle<10):
             ser.write(b'0')
         else:
-            ser.write(Angle[i])
+            ser.write(AngleString[i])
             i=i+1
-        ser.write(Angle[i+1])
+        ser.write(AngleString[i+1])
         #time.sleep(0.5)
         #return ser.readline()
     def printAll(self):
