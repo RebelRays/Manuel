@@ -59,6 +59,9 @@ class HandleEngines:
     def RobotMoveLeft(self):
         self.MoveLeftWheels(WheelCommand.Back)
         self.MoveRightWheels(WheelCommand.Forward)
+    def RobotMoveRightWheels(self):
+        self.MoveRightWheels(WheelCommand.Forward)
+        self.MoveLeftWheels(WheelCommand.Stop)
     def RobotStop(self):
         print("Stopping")
         self.MoveLeftWheels(WheelCommand.Stop)
