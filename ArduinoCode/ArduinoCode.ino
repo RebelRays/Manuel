@@ -55,13 +55,14 @@ void loop() {
     else if(incomingByte == 'g'){
       Serial.println(getServoValues());
     }else if((incomingByte >= 's')){
+
+      delay(30);
       if (Serial.available() == 0){
         Serial.println("Error Expected Servo & Angle");
         return;
       }
-
-      delay(40);
       incomingByte = Serial.read();
+      Serial.println("Reading Servo " + String(incomingByte));
 
       int ServoNo = incomingByte - '1';
       if(ServoNo>3){
@@ -69,38 +70,43 @@ void loop() {
         return;
       }
       
+      delay(30);
       if (Serial.available() == 0){
         Serial.println("Error Expected Angle1");
         return;
       }
 
-      delay(40);
+     
       incomingByte = Serial.read();
+      Serial.println("Reading Angle1 " + String(incomingByte));
       int Angle1 = incomingByte - '0';
       if(Angle1 > 9){
         Serial.println("Error, angle1 value should be between 0 to 9");
         return;
       }
+
+      delay(30);
       if (Serial.available() == 0){
         Serial.println("Error Expected Angle2");
         return;
       }
 
-      delay(40);
       incomingByte = Serial.read();
+      Serial.println("Reading Angle2 " + String(incomingByte));
       int Angle2 = incomingByte - '0';
       if(Angle2 > 9){
         Serial.println("Error, angle2 value should be between 0 to 9");
         return;
       }
 
+      delay(30);
       if (Serial.available() == 0){
-        Serial.println("Error Expected Angle3");
+        Serial.println("Error Expected Angle3 ");
         return;
       }
 
-      delay(40);
       incomingByte = Serial.read();
+      Serial.println("Reading Angle3 " + String(incomingByte));
       int Angle3 = incomingByte - '0';
       if(Angle3 > 9){
         Serial.println("Error, angle3 value should be between 0 to 9");
