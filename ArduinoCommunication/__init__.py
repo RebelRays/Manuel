@@ -34,8 +34,8 @@ class ArduinoCommunication:
             print(b'0')
             ser.write(b'0')
         else:
-            ser.write(AngleString[i])
-            print(AngleString[i])
+            ser.write(b'1')
+            print(b'1')
             i=i+1
         
         if(Angle<10):
