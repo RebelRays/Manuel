@@ -140,7 +140,7 @@ try:
                 #print("Checking Serial reply")
                 ardy.printAll()
             elif(user_command[0:3].upper() == 'SET'):
-                ardy.MoveServo(user_command[1], int(user_command[4:]))
+                ardy.MoveServo(user_command[3], int(user_command[4:]))
             elif(user_command.upper() == 'P'):
                 ardy.pingArdy()
             elif(user_command.upper() == 'H'):

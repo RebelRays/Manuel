@@ -23,7 +23,7 @@ class ArduinoCommunication:
     def MoveServo(self, ServoNo, Angle):
         ser.writelines
         ser.write(b's')
-        servoStr = ServoNo[0].encode('ascii')
+        servoStr = ServoNo.encode('ascii')
         print("Servo")
         print(servoStr)
         ser.write(servoStr)
