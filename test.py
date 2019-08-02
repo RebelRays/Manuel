@@ -6,6 +6,7 @@ user_commands = use_command_line.split(' ')
 
 for user_command in user_commands:
     print("user_command : " + user_command)
+    #sleep(0.5)
 
 print("donE")
 
