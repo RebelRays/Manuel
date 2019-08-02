@@ -37,7 +37,8 @@ class ArduinoCommunication:
         else:
             ser.write(AngleString[i])
             i=i+1
-        ser.write(AngleString[i+1])
+
+        ser.write(AngleString[i])
         #time.sleep(0.5)
         #return ser.readline()
     def printAll(self):
