@@ -27,7 +27,7 @@ class ArduinoCommunication:
         print("Servo")
         print(servoStr)
         ser.write(servoStr)
-        AngleString = str(Angle)
+        AngleString = str(Angle).encode('ascii')
         i = 0
         print("Sending Angle")
         if(Angle<100):
