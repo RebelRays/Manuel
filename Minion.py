@@ -86,6 +86,7 @@ try:
         user_commands = use_command_line.split(' ')
 
         for user_command in user_commands:
+            print("user_command : " + user_command)
             if(user_command.upper() == 'F'):
                 engines.RobotMoveForward()
             elif(user_command.upper() == 'B'):
@@ -95,6 +96,7 @@ try:
             elif(user_command.upper() == 'R'):
                 engines.RobotMoveRight()
             elif(user_command.upper() == 'S'):
+                print("Stopping")
                 engines.RobotStop()
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
