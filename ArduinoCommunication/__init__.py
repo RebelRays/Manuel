@@ -47,8 +47,8 @@ class ArduinoCommunication:
             print(angle2)
             i=i+1
 
-        ser.write(chr(AngleString[i].encode('ascii')))
-        print(chr(AngleString[i].encode('ascii')))
+        ser.write(chr(AngleString[i]).encode('ascii'))
+        print(chr(AngleString[i]).encode('ascii'))
         #time.sleep(0.5)
         #return ser.readline()
     def MoveServo2(self, ServoNo, Angle):
