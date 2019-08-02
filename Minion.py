@@ -94,34 +94,44 @@ try:
                 engines.RobotMoveLeft()
             elif(user_command.upper() == 'R'):
                 engines.RobotMoveRight()
+            elif(user_command.upper() == 'S'):
+                engines.RobotStop()
             elif(user_command.upper() == 'G'):
                 ardy.printServoLocations()
             elif(user_command.upper() == 'U'):
                print("Ultrasound Distance = " +str(usDistance.UltraDistance))
             elif(user_command.upper() == 'SIDE'):
-                ardy.MoveServo('1', 10)
-                ardy.MoveServo('2', 10)
-                ardy.MoveServo('3', 80)
-                ardy.MoveServo('4', 160)
+                #ardy.MoveServo('1', 10)
+                #ardy.MoveServo('2', 10)
+                #ardy.MoveServo('3', 80)
+                #ardy.MoveServo('4', 160)
                 ardy.MoveServo('1', 5)
+
                 ardy.MoveServo('2', 5)
                 ardy.MoveServo('3', 70)
                 ardy.MoveServo('4', 160)
             elif(user_command.upper() == 'START'):
-                ardy.MoveServo('1', 87)
-                ardy.MoveServo('2', 160)
-                ardy.MoveServo('3', 60)
-                ardy.MoveServo('4', 166)
-
+                #ardy.MoveServo('1', 87)
+                #ardy.MoveServo('2', 160)
+                #ardy.MoveServo('3', 60)
+                #ardy.MoveServo('4', 166)
+                ardy.MoveServo('4', 175)
+                time.sleep(0.8)
                 ardy.MoveServo('1', 90)
-                ardy.MoveServo('2', 177)
+                time.sleep(0.8)
                 ardy.MoveServo('3', 70)
-                ardy.MoveServo('4', 60)
+                time.sleep(0.8)
+                ardy.MoveServo('2', 177)
+                time.sleep(0.8)
             elif(user_command.upper() == 'DOWN'):
+                ardy.MoveServo('4', 100)
+                time.sleep(0.8)
                 ardy.MoveServo('1', 90)
+                time.sleep(0.8)
                 ardy.MoveServo('2', 5)
+                time.sleep(0.8)
                 ardy.MoveServo('3', 40)
-                ardy.MoveServo('4', 166)
+                time.sleep(0.8)
             elif(user_command.upper() == 'PIC'):
                 camera.takePicture()
             elif(user_command.upper() == 'WIFI'):
@@ -129,8 +139,8 @@ try:
             elif(user_command.upper() == "READ"):
                 #print("Checking Serial reply")
                 ardy.printAll()
-            elif(user_command[0].upper() == 'S'):
-                ardy.MoveServo(user_command[1], int(user_command[2:]))
+            elif(user_command[0:3].upper() == 'SET'):
+                ardy.MoveServo(user_command[1], int(user_command[4:]))
             elif(user_command.upper() == 'P'):
                 ardy.pingArdy()
             elif(user_command.upper() == 'H'):
@@ -139,10 +149,11 @@ try:
             elif(user_command.upper() == 'Q'):
                 LoopNo=0
                 break
+            elif(user_command.upper() == 'W'):
+                time.sleep(0.5)
+                break
             
-            time.sleep(0.5)
             LoopNo=LoopNo-1
-            engines.RobotStop()
         #UltraSoundHandler
         #distance = UltraSound.getUltaSoundDistance()
         

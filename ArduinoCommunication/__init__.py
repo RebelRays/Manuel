@@ -1,7 +1,7 @@
 import serial
 import time
 
-serialport = "/dev/ttyACM0" #"COM3"
+serialport = "COM3" #"/dev/ttyACM0" #"COM3"
 
 
 try: 
@@ -19,17 +19,25 @@ class ArduinoCommunication:
         #Line = ser.readlines()
         #print(Line)
 
+    #ardy.MoveServo('2',10)
     def MoveServo(self, ServoNo, Angle):
+        ser.writelines
         ser.write(b's')
-        #print("Sending ServoNo")
-        #print(ServoNo)
-        ser.write(bytes([int(ServoNo)]))
-        #print("Sending Angle")
-        #print(Angle)
-        #print("encoded to")
-        bangle = bytes([Angle])
-        #print(bangle)
-        ser.write(bangle)
+        ser.write(ServoNo[0])
+        AngleString = str(Angle)
+        i = 0
+        if(Angle<100):
+            ser.write(b'0')
+        else:
+            ser.write(Angle[i])
+            i=i+1
+        
+        if(Angle<10):
+            ser.write(b'0')
+        else:
+            ser.write(Angle[i])
+            i=i+1
+        ser.write(Angle[i+1])
         time.sleep(0.5)
         #return ser.readline()
     def printAll(self):
@@ -48,3 +56,6 @@ class ArduinoCommunication:
     def cleanup(self):
         print("ArduinoCommunication -> Cleanup")
         ser.close()
+    
+ardy = ArduinoCommunication()
+print("Ready")
