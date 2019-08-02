@@ -116,10 +116,10 @@ void loop() {
 
       int TotAngel = Angle1*100 + Angle2*10 + Angle3;
 
-      //attachServo(ServoNo);
-      //servos[ServoNo].write(TotAngel);
+      attachServo(ServoNo);
+      servos[ServoNo].write(TotAngel);
       delay(500);
-      //detachServo(ServoNo);
+      detachServo(ServoNo);
     }
   }
   delay(10);
