@@ -84,6 +84,7 @@ try:
 
         use_command_line = input("Your command:")
         user_commands = use_command_line.split(' ')
+        print(user_commands)
 
         for user_command in user_commands:
             print("user_command : " + user_command)

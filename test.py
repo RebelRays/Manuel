@@ -1,15 +1,12 @@
 Me = "set4170"
 
-print(Me[0:3])
-print(Me[4:])
-print(Me[3])
-foo = Me[0].encode('ascii')
-print(b'0')
-angle2 = str(123)
-angle3 = chr(angle2[0]).encode('ascii')
-angle4 = b'1'
-if(angle3 == angle4):
-    print("equal")
+
+use_command_line = input("Your command:")
+user_commands = use_command_line.split(' ')
+
+for user_command in user_commands:
+    print("user_command : " + user_command)
+
 print("donE")
 
 
