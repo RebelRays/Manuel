@@ -1,7 +1,7 @@
 import serial
 import time
 
-serialport = "COM3" #"/dev/ttyACM0" #"COM3"
+serialport = "/dev/ttyACM0" #"COM3"
 
 
 try: 
