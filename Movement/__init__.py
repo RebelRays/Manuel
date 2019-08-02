@@ -74,10 +74,10 @@ class HandleEngines:
         while True:
             gpio.output(self.EnableRightEngines, True)
             gpio.output(self.EnableLeftEngines, True)
-            time.sleep(self.SetOnTime)
-            gpio.output(self.EnableRightEngines, False)
-            gpio.output(self.EnableLeftEngines, False)
-            time.sleep(self.SetOffTime)
+            #time.sleep(self.SetOnTime)
+            #gpio.output(self.EnableRightEngines, False)
+            #gpio.output(self.EnableLeftEngines, False)
+            #time.sleep(self.SetOffTime)
             
 
 
