@@ -93,8 +93,8 @@ try:
             elif(user_command.upper() == 'B'):
                 engines.RobotMoveBack()
             elif(user_command.upper() == 'L'):
-                #engines.RobotMoveLeft()
-                engines.RobotMoveRightWheels()
+                engines.RobotMoveLeft()
+                #engines.RobotMoveRightWheels()
             elif(user_command.upper() == 'R'):
                 engines.RobotMoveRight()
             elif(user_command.upper() == 'S'):
