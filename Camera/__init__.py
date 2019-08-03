@@ -14,7 +14,10 @@ class CameraHandler:
             pi_camera.start_preview()
             now_Str = datetime.today().strftime('%Y%m%d-%H%M%S')
             sleep(2)
-            pi_camera.capture('./DataRecording/Images/%s.png' % now_Str)
+            #pi_camera.capture('./DataRecording/Images/%s.png' % now_Str)
+            imagename = './DataRecording/Images/' + now_Str + ".png"
+            pi_camera.capture(imagename)
+            return imagename
         finally:
             pi_camera.close()
     

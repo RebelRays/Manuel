@@ -8,6 +8,7 @@ import logging
 import ArduinoCommunication
 import Camera
 import WifiSignals
+import HunterAI
 
 logging.basicConfig(filename='example.log',level=logging.DEBUG, format="%(asctime)-15s %(levelname)s:\t %(message)s")
 logging.debug('This message should go to the log file')
@@ -136,6 +137,32 @@ try:
                 time.sleep(0.8)
                 ardy.MoveServo('3', 40)
                 time.sleep(0.8)
+            elif(user_command.upper() == 'HUNT'):
+                NO_OF_SEARCHTURNS_ALLOWED = 5
+                while(NO_OF_SEARCHTURNS_ALLOWED > 0):
+                    imagename = camera.takePicture()
+                    res = HunterAI.Descision(imagename)
+                    if(res == "grab"):
+                        print("grabbing")
+                        ardy.MoveServo('4', 170)
+                        break
+                    else if(res == "left"):
+                        print("Moving left")
+                        engines.RobotMoveLeft()
+                        time.sleep(0.5)
+                        engines.RobotStop()
+                    else if(res == "forward"):
+                        print("Forward")
+                        engines.RobotMoveForward()
+                        time.sleep(0.5)
+                        engines.RobotStop()
+                    else if(res == "Did not find anything"):
+                        print("left searching")
+                        engines.RobotMoveLeft()
+                        time.sleep(1)
+                        engines.RobotStop()
+                        NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+                    
             elif(user_command.upper() == 'PIC'):
                 camera.takePicture()
             elif(user_command.upper() == 'WIFI'):

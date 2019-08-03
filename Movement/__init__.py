@@ -14,8 +14,8 @@ class HandleEngines:
     IN2 = -1
     IN3 = -1
     IN4 = -1
-    SetOnTime=0.04
-    SetOffTime=0.01
+    SetOnTime=0.05
+    SetOffTime=0.005
 
     """description of class"""
     def MoveLeftWheels(self, command):
@@ -74,10 +74,10 @@ class HandleEngines:
         while True:
             gpio.output(self.EnableRightEngines, True)
             gpio.output(self.EnableLeftEngines, True)
-            #time.sleep(self.SetOnTime)
-            #gpio.output(self.EnableRightEngines, False)
-            #gpio.output(self.EnableLeftEngines, False)
-            #time.sleep(self.SetOffTime)
+            time.sleep(self.SetOnTime)
+            gpio.output(self.EnableRightEngines, False)
+            gpio.output(self.EnableLeftEngines, False)
+            time.sleep(self.SetOffTime)
             
 
 
