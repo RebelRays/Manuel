@@ -146,17 +146,17 @@ try:
                         print("grabbing")
                         ardy.MoveServo('4', 170)
                         break
-                    else if(res == "left"):
+                    elif (res == "left"):
                         print("Moving left")
                         engines.RobotMoveLeft()
                         time.sleep(0.5)
                         engines.RobotStop()
-                    else if(res == "forward"):
+                    elif (res == "forward"):
                         print("Forward")
                         engines.RobotMoveForward()
                         time.sleep(0.5)
                         engines.RobotStop()
-                    else if(res == "Did not find anything"):
+                    elif (res == "Did not find anything"):
                         print("left searching")
                         engines.RobotMoveLeft()
                         time.sleep(1)
