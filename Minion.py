@@ -187,7 +187,7 @@ try:
     while(LoopNo>0):
         print(LoopNo)
         LoopNo=LoopNo-1
-        
+
         use_command_line = input("Your command:")
         user_commands = use_command_line.split(' ')
         #print(user_commands)
@@ -197,7 +197,7 @@ try:
             if(user_command == 'Q'):
                 LoopNo=0
                 break
-            ExecCommand(user_commands)
+            ExecCommand(user_command)
         
 finally:
     ardy.cleanup()  
