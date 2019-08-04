@@ -85,10 +85,7 @@ def ExecCommand(user_command):
 
     ########################
     # Enviroment Commands
-    if(user_command.upper() == 'Q'):
-        LoopNo=0
-        break
-    elif(user_command.upper() == 'W'):
+    if(user_command.upper() == 'W'):
         time.sleep(0.5)
         RecordInverseMoves.append('W')
     elif(user_command.upper() == 'GOBACK'):
@@ -189,15 +186,19 @@ LoopNo = 40
 try:
     while(LoopNo>0):
         print(LoopNo)
-
+        LoopNo=LoopNo-1
+        
         use_command_line = input("Your command:")
         user_commands = use_command_line.split(' ')
         #print(user_commands)
 
         for user_command in user_commands:
             print("user_command : " + user_command)
+            if(user_command == 'Q'):
+                LoopNo=0
+                break
             ExecCommand(user_commands)
-        LoopNo=LoopNo-1
+        
 finally:
     ardy.cleanup()  
     gpio.cleanup() # this ensures a clean exit
