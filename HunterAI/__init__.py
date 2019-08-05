@@ -36,7 +36,7 @@ def SaveCannyMask(filename):
             middle_y= (y1+y2)/2-0
             combined_x = combined_x + middle_x/no_of_lines
             combined_y = combined_y + middle_y/no_of_lines
-    cv2.imwrite(filename + "_canny_" + ".pgn", cannymask)
+    cv2.imwrite(filename + "_canny_" + ".png", cannymask)
     
     combined_x, combined_y = Coordinates(filename)
     print("combined_x " + combined_x + " combined_y " + " no_of_lines: " + no_of_lines)
