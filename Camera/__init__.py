@@ -8,9 +8,8 @@ cam = None
 class CameraHandler:
 
     def initFastPic(self):
-        print("In initFastPic")
+        global cam
         if(cam is None):
-            print("Will init the variable")
             cam = PiCamera()
             cam.resolution = (640,480)
             cam.rotation = 180
@@ -18,13 +17,13 @@ class CameraHandler:
             sleep(3)
 
     def closeCamera(self):
+        global cam
         if(cam is not None):
             cam.close()
             cam = None
         
     def fastPic(self):
         if(cam is None):
-            print("Le cam is None -> calling initFastPic")
             self.initFastPic()
         
         now_Str = datetime.today().strftime('%Y%m%d-%H%M%S')
