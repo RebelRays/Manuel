@@ -80,6 +80,7 @@ camera = Camera.CameraHandler()
 Wifi = WifiSignals.WifiSignals()
 
 RecordInverseMoves = []
+PlayingRecorded = []
 def ExecCommand(user_command):
 
 
@@ -89,7 +90,9 @@ def ExecCommand(user_command):
         time.sleep(0.5)
         RecordInverseMoves.append('W')
     elif(user_command.upper() == 'GOBACK'):
-        for command in RecordInverseMoves:
+        PlayingRecorded = RecordInverseMoves[:]
+
+        for command in PlayingRecorded:
             ExecCommand(command)
         ExecCommand("S")
     ########################
