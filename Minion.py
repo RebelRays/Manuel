@@ -172,10 +172,12 @@ def ExecCommand(user_command):
                 ardy.MoveServo('4', 170)
                 break
             elif (res == "left"):
+                print("left")
                 ExecCommand("L")
                 ExecCommand("W")
                 ExecCommand("S")
             elif (res == "forward"):
+                print("forward")
                 ExecCommand("F")
                 ExecCommand("W")
                 ExecCommand("S")
@@ -185,6 +187,10 @@ def ExecCommand(user_command):
                 ExecCommand("W")
                 ExecCommand("S")
                 NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+    elif(user_command.upper() == 'THUNT'):
+        imagename = camera.takePicture()
+        res = HunterAI.Descision(imagename)
+        print(res)
 
 LoopNo = 40
 try:
@@ -202,7 +208,7 @@ try:
                 LoopNo=0
                 break
             ExecCommand(user_command)
-        
+        ExecCommand("S") #because I forget
 finally:
     ardy.cleanup()  
     gpio.cleanup() # this ensures a clean exit

@@ -39,6 +39,7 @@ def Coordinates(filename):
 
 def Descision(filename):
     combined_x, combined_y = Coordinates(filename)
+    print("combined_x = " + combined_x + " combined_y " + combined_y)
     if(combined_x == 0 or combined_y == 0):
         #Did not find anything
         return "Did not find anything"
