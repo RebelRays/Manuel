@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import os
 
 
-def GetCannyMask(working_image):
+def GetCannyMask(working_image): n
     height = working_image.shape[0]
     down_regions = np.array([[(0, height), (0,210), (620,225), (620,height)]])
     
     grayImage=cv2.cvtColor(working_image, cv2.COLOR_RGB2GRAY)
     blurImage = cv2.GaussianBlur(grayImage, (5,5), 0)
-    cannyImage=cv2.Canny(blurImage, 50, 100)
+    cannyImage=cv2.Canny(blurImage, 10, 30)
 
     region_of_floor = np.zeros_like(cannyImage)
     cv2.fillPoly(region_of_floor, down_regions, 255)
@@ -21,7 +21,7 @@ def GetCannyMask(working_image):
 #dir_name = "E:\\R2D2\\images\\WithinReach"
 #dir_name = "E:\\R2D2\\images\\NeedToMoveForward"
 #dir_name = "E:\\R2D2\\images\\MorForward"
-dir_name = "E:\\R2D2\\images\\TurnLeft"
+dir_name = "E:\\R2D2\\images\\Hunt"
 directory = os.fsencode(dir_name)
 
 for file in os.listdir(directory):
@@ -29,6 +29,9 @@ for file in os.listdir(directory):
     image = cv2.imread(filename)
     cannymask = GetCannyMask(image)
     
+    plt.imshow(cannymask)
+    plt.show()
+
     treshold = 2
     lines=cv2.HoughLinesP(cannymask, 2, np.pi/180, treshold, np.array([]), minLineLength=4, maxLineGap=5)
     combined_x=0

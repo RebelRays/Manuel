@@ -14,6 +14,8 @@ class HandleEngines:
     IN2 = -1
     IN3 = -1
     IN4 = -1
+
+    #is set fromoutside?
     SetOnTime=0.05
     SetOffTime=0.005
 
@@ -67,17 +69,17 @@ class HandleEngines:
         self.MoveLeftWheels(WheelCommand.Stop)
         self.MoveRightWheels(WheelCommand.Stop)
     def RegulateSpeed(self):
-        t = Timer(0.001, self.LoopRegulateSpeed)
+        t = Timer(0.001, self.LoopRegulateSpeed) #One time call
         t.start()
         return
     def LoopRegulateSpeed(self):
         while True:
             gpio.output(self.EnableRightEngines, True)
             gpio.output(self.EnableLeftEngines, True)
-            #time.sleep(self.SetOnTime)
-            #gpio.output(self.EnableRightEngines, False)
-            #gpio.output(self.EnableLeftEngines, False)
-            #time.sleep(self.SetOffTime)
+            time.sleep(self.SetOnTime)
+            gpio.output(self.EnableRightEngines, False)
+            gpio.output(self.EnableLeftEngines, False)
+            time.sleep(self.SetOffTime)
             
 
 

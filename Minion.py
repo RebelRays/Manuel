@@ -62,7 +62,7 @@ engines.IN3 = IN3
 engines.IN4 = IN4
 engines.RobotStop()
 
-engines.SetOnTime = 0.005 
+engines.SetOnTime = 0.05
 engines.SetOffTime = 0.01 
 engines.RegulateSpeed()
 
@@ -120,7 +120,7 @@ def ExecCommand(user_command):
     elif(user_command.upper() == 'U'):
         print("Ultrasound Distance = " +str(usDistance.UltraDistance))
     elif(user_command.upper() == 'PIC'):
-        camera.takePicture()
+        camera.fastPic()
     elif(user_command.upper() == 'WIFI'):
         Wifi.Record()
     #########################
