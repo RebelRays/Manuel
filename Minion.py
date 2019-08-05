@@ -162,7 +162,7 @@ def ExecCommand(user_command):
         time.sleep(0.8)
     #########################
     #AI
-    elif(user_command.upper() == 'HUNT'):
+    elif(user_command.upper() == 'HUNT' or user_command.upper() == 'HUNTER'):
         NO_OF_SEARCHTURNS_ALLOWED = 5
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.takePicture()
@@ -187,7 +187,7 @@ def ExecCommand(user_command):
                 ExecCommand("W")
                 ExecCommand("S")
                 NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
-    elif(user_command.upper() == 'THUNT'):
+    elif(user_command.upper() == 'THUNT' or user_command.upper() == 'THUNTER'):
         imagename = camera.takePicture()
         res = HunterAI.Descision(imagename)
         print(res)
