@@ -95,6 +95,7 @@ def ExecCommand(user_command):
         for command in PlayingRecorded:
             ExecCommand(command)
         ExecCommand("S")
+        RecordInverseMoves.clear()
     ########################
     # Engine Commands
     if(user_command.upper() == 'F'):
