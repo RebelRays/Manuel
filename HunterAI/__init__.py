@@ -17,6 +17,32 @@ def GetCannyMask(working_image):
     masked_image = cv2.bitwise_and(cannyImage, region_of_floor)
     return masked_image
 
+def SaveCannyMask(filename):
+    image = cv2.imread(filename)
+    cannymask = GetCannyMask(image)
+    
+    image = cv2.imread(filename)
+    cannymask = GetCannyMask(image)
+        
+    treshold = 2
+    lines=cv2.HoughLinesP(cannymask, 2, np.pi/180, treshold, np.array([]), minLineLength=4, maxLineGap=5)
+    combined_x=0
+    combined_y= 0
+    if lines is not None:
+        no_of_lines = len(lines)
+        for line in lines:
+            x1, y1, x2, y2 = line.reshape(4)
+            #for x1, y1, x2, y2 in lines:
+            cv2.line(image, (x1,y1), (x2,y2), (255,0,0), 10)
+            middle_x = (x1+x2)/2.0
+            middle_y= (y1+y2)/2-0
+            combined_x = combined_x + middle_x/no_of_lines
+            combined_y = combined_y + middle_y/no_of_lines
+    cv2.imwrite(filename + "_canny_" + ".pgn")
+    
+    combined_x, combined_y = Coordinates(filename)
+    print("combined_x " + combined_x + " combined_y " + " no_of_lines: " + no_of_lines)
+    return combined_x, combined_y
 def Coordinates(filename):
     image = cv2.imread(filename)
     cannymask = GetCannyMask(image)

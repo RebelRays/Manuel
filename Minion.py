@@ -121,6 +121,8 @@ def ExecCommand(user_command):
         print("Ultrasound Distance = " +str(usDistance.UltraDistance))
     elif(user_command.upper() == 'PIC'):
         camera.fastPic()
+    elif(user_command.upper() == 'STOPPIC'):
+        camera.closeCamera()
     elif(user_command.upper() == 'WIFI'):
         Wifi.Record()
     #########################
@@ -191,6 +193,9 @@ def ExecCommand(user_command):
         imagename = camera.takePicture()
         res = HunterAI.Descision(imagename)
         print(res)
+    elif(user_command.upper() == 'CANNY'):
+        imagename = camera.takePicture()
+        HunterAI.SaveCannyMask(imagename)
 
 LoopNo = 40
 try:
