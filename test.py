@@ -3,14 +3,16 @@ Me = "set4170"
 
 
 
-def LoopRegulateSpeed():
-    print("Yay baby")
 
+class foo:
+    cam = None
+    def me2(self):
+        if (cam is None):
+            print("None!")
 
-from threading import Timer
+Foir = foo()
 
-t = Timer(1, LoopRegulateSpeed)
-t.start()
+Foir.me2()
 
 
 
