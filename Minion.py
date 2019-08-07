@@ -174,7 +174,7 @@ def ExecCommand(user_command):
     #AI
     elif(user_command.upper() == 'RANDOME'):
         ExecCommand("PIC")
-        NoOfRownds = 10:
+        NoOfRownds = 10
         while NoOfRownds>0:
             NoOfRownds = NoOfRownds - 1
             x = random.randint(1,4)
