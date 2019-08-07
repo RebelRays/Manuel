@@ -178,7 +178,7 @@ def ExecCommand(user_command):
         while NoOfRownds>0:
             NoOfRownds = NoOfRownds - 1
             x = random.randint(1,4)
-            print("x = " + x)
+            print("x = " + str(x))
             if(x == 1):
                 if(usDistance.UltraDistance < 0.15):
                     print("Bump stop")
