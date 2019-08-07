@@ -174,13 +174,13 @@ def ExecCommand(user_command):
     #AI
     elif(user_command.upper() == 'RANDOME'):
         ExecCommand("PIC")
-        NoOfRownds = 10
+        NoOfRownds = 200
         while NoOfRownds>0:
             NoOfRownds = NoOfRownds - 1
             x = random.randint(1,4)
             print("x = " + str(x))
             if(x == 1):
-                if(usDistance.UltraDistance < 0.15):
+                if(usDistance.UltraDistance < 0.18):
                     print("Bump stop")
                     continue
                 ExecCommand("F")
