@@ -26,6 +26,7 @@ def SaveCannyMask(filename):
     lines=cv2.HoughLinesP(cannymask, 2, np.pi/180, treshold, np.array([]), minLineLength=4, maxLineGap=5)
     combined_x=0
     combined_y= 0
+    no_of_lines= 0
     if lines is not None:
         no_of_lines = len(lines)
         for line in lines:
@@ -39,7 +40,7 @@ def SaveCannyMask(filename):
     cv2.imwrite(filename + "_canny_" + ".png", cannymask)
     
     combined_x, combined_y = Coordinates(filename)
-    print("combined_x " + combined_x + " combined_y " + " no_of_lines: " + no_of_lines)
+    print("combined_x " + str(combined_x) + " combined_y " + str(combined_y) + " no_of_lines: " + str(no_of_lines))
     return combined_x, combined_y
 def Coordinates(filename):
     image = cv2.imread(filename)

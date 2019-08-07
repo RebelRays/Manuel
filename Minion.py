@@ -96,6 +96,14 @@ def ExecCommand(user_command):
             ExecCommand(command)
         ExecCommand("S")
         RecordInverseMoves.clear()
+    elif(user_command.upper() == 'SLOW'):
+        engines.SetOnTime = 0.03
+        engines.SetOffTime = 0.01
+        print("Set to Slow")
+    elif(user_command.upper() == 'NORMAL'):
+        engines.SetOnTime = 0.05
+        engines.SetOffTime = 0.01
+        print("Set to Normal")
     ########################
     # Engine Commands
     if(user_command.upper() == 'F'):
@@ -164,6 +172,35 @@ def ExecCommand(user_command):
         time.sleep(0.8)
     #########################
     #AI
+    elif(user_command.upper() == 'RANDOME'):
+        ExecCommand("PIC")
+        NoOfRownds = 10:
+        while NoOfRownds>0:
+            NoOfRownds = NoOfRownds - 1
+            x = random.randint(1,4)
+            if(x == 1):
+                if(usDistance.UltraDistance < 15):
+                    print("Bump stop")
+                    continue
+                ExecCommand("F")
+                ExecCommand("W")
+                ExecCommand("S")
+                ExecCommand("PIC")
+            elif(x == 2):
+                ExecCommand("B")
+                ExecCommand("W")
+                ExecCommand("S")
+                ExecCommand("PIC")
+            elif(x == 3):
+                ExecCommand("L")
+                ExecCommand("W")
+                ExecCommand("S")
+                ExecCommand("PIC")
+            elif(x == 4):
+                ExecCommand("L")
+                ExecCommand("W")
+                ExecCommand("S")
+                ExecCommand("PIC")
     elif(user_command.upper() == 'HUNT' or user_command.upper() == 'HUNTER'):
         NO_OF_SEARCHTURNS_ALLOWED = 5
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
