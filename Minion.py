@@ -183,12 +183,12 @@ def ExecCommand(user_command):
                 if(usDistance.UltraDistance < 0.18):
                     print("Bump stop")
                     continue
-                ExecCommand("F")
+                ExecCommand("B")
                 ExecCommand("W")
                 ExecCommand("S")
                 ExecCommand("PIC")
             elif(x == 2):
-                ExecCommand("B")
+                ExecCommand("F")
                 ExecCommand("W")
                 ExecCommand("S")
                 ExecCommand("PIC")
@@ -198,7 +198,7 @@ def ExecCommand(user_command):
                 ExecCommand("S")
                 ExecCommand("PIC")
             elif(x == 4):
-                ExecCommand("L")
+                ExecCommand("R")
                 ExecCommand("W")
                 ExecCommand("S")
                 ExecCommand("PIC")
