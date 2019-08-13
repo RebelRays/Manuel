@@ -36,6 +36,10 @@ model2 = tf.keras.models.Sequential([
   tf.keras.layers.Dense(2, activation='softmax')
 ])
 
+modelfile= "tensormodel/cp-0095.ckpt"
+
+model.load_weights(modelfile)
+
 # Create a basic model instance
 #model = create_model()
 #model.summary()
