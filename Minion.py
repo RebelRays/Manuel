@@ -247,7 +247,7 @@ try:
 
         for user_command in user_commands:
             print("user_command : " + user_command)
-            if(user_command == 'Q'):
+            if(user_command.upper() == 'Q'):
                 LoopNo=0
                 break
             ExecCommand(user_command)
