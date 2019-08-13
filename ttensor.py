@@ -38,7 +38,7 @@ model2 = tf.keras.models.Sequential([
 
 modelfile= "tensormodel/cp-0095.ckpt"
 
-model.load_weights(modelfile)
+model2.load_weights(modelfile)
 
 # Create a basic model instance
 #model = create_model()
