@@ -253,5 +253,7 @@ try:
             ExecCommand(user_command)
         ExecCommand("S") #because I forget
 finally:
+    usDistance.StopMeasuring()
+    engines.cleanup()
     ardy.cleanup()  
     gpio.cleanup() # this ensures a clean exit

@@ -7,6 +7,7 @@ class WheelCommand:
     Forward=1
     Back=-1
 
+LoopRegulateSpeedTimer = None
 class HandleEngines:
     EnableRightEngines=-1
     EnableLeftEngines=-1
@@ -69,11 +70,16 @@ class HandleEngines:
         self.MoveLeftWheels(WheelCommand.Stop)
         self.MoveRightWheels(WheelCommand.Stop)
     def RegulateSpeed(self):
+        global LoopRegulateSpeedTimer
         t = Timer(0.001, self.LoopRegulateSpeed) #One time call
+        LoopRegulateSpeedTimer = t
         t.start()
         return
+    def cleanup(self):
+        global LoopRegulateSpeedTimer
+        LoopRegulateSpeedTimer = None
     def LoopRegulateSpeed(self):
-        while True:
+        while LoopRegulateSpeedTimer is None:
             gpio.output(self.EnableRightEngines, True)
             gpio.output(self.EnableLeftEngines, True)
             time.sleep(self.SetOnTime)
