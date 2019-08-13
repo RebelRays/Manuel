@@ -7,8 +7,8 @@ import math
 from datetime import datetime
 
 def getLines(cannymask):
-    treshold = 30
-    lines=cv2.HoughLinesP(cannymask, 3, np.pi/180, treshold, np.array([]), minLineLength=6, maxLineGap=15)
+    treshold = 8
+    lines=cv2.HoughLinesP(cannymask, 3, np.pi/180, treshold, np.array([]), minLineLength=5, maxLineGap=15)
     return lines
 
 def lineDistance(line1, line2):
@@ -94,6 +94,8 @@ for template,w, h, filename, original in templates:
     img = np.copy(template)
     #cv2.imshow("original", original)
     #cv2.waitKey(0)
+    if lines is None:
+        continue
     for line in lines:
         x1, y1, x2, y2 = line.reshape(4)
         cv2.line(img, (x1,y1), (x2,y2), (126,126,255), 8)
