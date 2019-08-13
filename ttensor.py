@@ -6,7 +6,7 @@ from tensorflow import keras
 import os
 import cv2
 
-tf.logging.set_verbosity(tf.compat.v1.logging.INFO)
+#tf.logging.set_verbosity(tf.compat.v1.logging.INFO)
 
 
 # Returns a short sequential model
@@ -45,7 +45,7 @@ model2.load_weights(modelfile)
 
 testfile = "/home/pi/Manuel/DataRecording/Images/20190811-234349.png"
 
-image = cv2.imread(filename)
+image = cv2.imread(testfile)
 resized = cv2.resize(image, (120,120))
 prediction = model2.predict(np.array([resized]))
 print(prediction[0])
