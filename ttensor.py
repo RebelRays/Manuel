@@ -3,6 +3,8 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
+import os
+import cv2
 
 tf.logging.set_verbosity(tf.compat.v1.logging.INFO)
 
@@ -39,6 +41,15 @@ model2 = tf.keras.models.Sequential([
 modelfile= "tensormodel/cp-0095.ckpt"
 
 model2.load_weights(modelfile)
+
+
+testfile = "/home/pi/Manuel/DataRecording/Images/20190811-234349.png"
+
+image = cv2.imread(filename)
+resized = cv2.resize(image, (120,120))
+prediction = model2.predict(np.array([resized]))
+print(prediction[0])
+result = np.argmax(prediction[0])
 
 # Create a basic model instance
 #model = create_model()
