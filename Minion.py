@@ -9,6 +9,7 @@ import ArduinoCommunication
 import Camera
 import WifiSignals
 import HunterAI
+import AITensorflow
 
 logging.basicConfig(filename='example.log',level=logging.DEBUG, format="%(asctime)-15s %(levelname)s:\t %(message)s")
 logging.debug('This message should go to the log file')
@@ -172,6 +173,12 @@ def ExecCommand(user_command):
         time.sleep(0.8)
     #########################
     #AI
+    #generateboxes
+    elif(user_command.upper() == 'SOCK'):
+        print("Boxes")
+        imagename = camera.takePicture()
+        boxes = AITensorflow.generateboxes(imagename)
+        print(boxes)
     elif(user_command.upper() == 'RANDOME'):
         ExecCommand("PIC")
         NoOfRownds = 200
