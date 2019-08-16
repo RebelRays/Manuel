@@ -3,6 +3,7 @@ import numpy as np
 from tensorflow import keras
 import os
 import cv2
+import matplotlib.pyplot as plt
 
 model = None
 def load_model():
@@ -38,20 +39,22 @@ def generateboxes(ImageFileName):
     boxesContainingSock = []
     original = cv2.imread(ImageFileName)
     justthefilename = ImageFileName.split('/')[-1]
-    print("justthefilename " + justthefilename)
     justthefilename  = justthefilename.split('.')[0]
+    print("justthefilename " + justthefilename)
     cropped_image = original[200:,:]
     ch,w, h = cropped_image.shape[::-1]
     current_h = 0
     size = 240
     delta = 40
     boxno=0
-    justthefilename = "foo"
+    #justthefilename = "foo"
     while current_h+delta+size <= h:
         current_w = 0
         while current_w+delta+size <= w:
             boxno = boxno +1
             cropped_image = original[current_h+200:current_h+200+size, current_w:current_w+200]
+            plt.imshow(cropped_image)
+            plt.show()
 
             result = getNotSockOrSock(cropped_image)
             newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
