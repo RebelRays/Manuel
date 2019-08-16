@@ -57,6 +57,7 @@ def generateboxes(ImageFileName):
                 newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
                 boxesContainingSock.append((current_h, current_w))
             
+            print(newfilename)
             cv2.imwrite(newfilename, cropped_image)
             current_w = current_w + delta
         current_h = current_h + delta
