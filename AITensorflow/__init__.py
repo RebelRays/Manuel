@@ -52,9 +52,9 @@ def generateboxes(ImageFileName):
             cropped_image = original[current_h+200:current_h+200+size, current_w:current_w+200]
 
             result = getNotSockOrSock(cropped_image)
-            newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".pgn"
+            newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
             if(result == 1):
-                newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".pgn"
+                newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
                 boxesContainingSock.append((current_h, current_w))
             
             cv2.imwrite(newfilename, cropped_image)
