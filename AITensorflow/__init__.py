@@ -41,18 +41,19 @@ def generateboxes(ImageFileName):
     justthefilename = ImageFileName.split('/')[-1]
     justthefilename  = justthefilename.split('.')[0]
     print("justthefilename " + justthefilename)
-    cropped_image = original[200:,:]
+    cropped_from = 50
+    cropped_image = original[cropped_from:,:]
     ch,w, h = cropped_image.shape[::-1]
     current_h = 0
     size = 240
-    delta = 40
+    delta = 60
     boxno=0
     #justthefilename = "foo"
     while current_h+delta+size <= h:
         current_w = 0
         while current_w+delta+size <= w:
             boxno = boxno +1
-            cropped_image = original[current_h+200:current_h+200+size, current_w:current_w+200]
+            cropped_image = original[current_h+cropped_from:current_h+cropped_from+size, current_w:current_w+size]
             plt.imshow(cropped_image)
             plt.show()
 
@@ -66,4 +67,3 @@ def generateboxes(ImageFileName):
             cv2.imwrite(newfilename, cropped_image)
             current_w = current_w + delta
         current_h = current_h + delta
-
