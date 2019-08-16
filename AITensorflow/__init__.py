@@ -32,12 +32,12 @@ def getNotSockOrSock(image):
     result = np.argmax(prediction[0])
     return result
 
-ImageSubfolder = "\\home\\pi\\Manuel\\DataRecording\\Images"
+ImageSubfolder = ".\\DataRecording\\Images"
 SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 def generateboxes(ImageFileName):
     boxesContainingSock = []
     original = cv2.imread(ImageFileName)
-    justthefilename = ImageFileName.split("\\")[-1]
+    justthefilename = ImageFileName.split('/')[-1]
     print("justthefilename " + justthefilename)
     justthefilename  = justthefilename.split('.')[0]
     cropped_image = original[200:,:]
