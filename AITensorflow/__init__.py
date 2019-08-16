@@ -27,7 +27,7 @@ def load_model():
 def getNotSockOrSock(image):
     if(model is None):
         load_model()
-    resized = cv2.resize(image, (180,180))
+    resized = cv2.resize(image, (120,120))
     prediction = model.predict(np.array([resized]))
     result = np.argmax(prediction[0])
     return result
