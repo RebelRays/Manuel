@@ -4,19 +4,14 @@ from datetime import datetime
 
 
 cam = None
-exposerCompensation = 0
 class CameraHandler:
 
     def makeBrighter(self):
-        global exposerCompensation
         global cam
-        exposerCompensation=exposerCompensation+6
-        cam.exposure_compensation = exposerCompensation
+        cam.iso = 800
     def resetExposure(self):
-        global exposerCompensation
         global cam
-        exposerCompensation=0
-        cam.exposure_compensation = exposerCompensation
+        cam.iso = 0
     def initFastPic(self):
         global cam
         if(cam is None):
