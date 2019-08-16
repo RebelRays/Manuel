@@ -105,6 +105,12 @@ def ExecCommand(user_command):
         engines.SetOnTime = 0.05
         engines.SetOffTime = 0.01
         print("Set to Normal")
+    elif(user_command.upper() == 'BRIGHTER'):
+        camera.makeBrighter()
+        print("makeBrighter")
+    elif(user_command.upper() == 'BRIGHTERRESET'):
+        camera.resetExposure()
+        print("resetExposure")
     ########################
     # Engine Commands
     if(user_command.upper() == 'F'):

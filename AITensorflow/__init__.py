@@ -6,6 +6,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 model = None
+
 def load_model():
     global model
     model2 = tf.keras.models.Sequential([
@@ -66,4 +67,4 @@ def generateboxes(ImageFileName):
             print(newfilename)
             cv2.imwrite(newfilename, cropped_image)
             current_w = current_w + delta
-        current_h = current_h + delta
+        current_h = current_h + deltas
