@@ -38,6 +38,7 @@ def generateboxes(ImageFileName):
     boxesContainingSock = []
     original = cv2.imread(ImageFileName)
     justthefilename = ImageFileName.split("\\")[-1]
+    print("justthefilename " + justthefilename)
     justthefilename  = justthefilename.split('.')[0]
     cropped_image = original[200:,:]
     ch,w, h = cropped_image.shape[::-1]
@@ -45,6 +46,7 @@ def generateboxes(ImageFileName):
     size = 240
     delta = 40
     boxno=0
+    justthefilename = "foo"
     while current_h+delta+size <= h:
         current_w = 0
         while current_w+delta+size <= w:
