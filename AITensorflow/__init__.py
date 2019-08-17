@@ -67,4 +67,4 @@ def generateboxes(ImageFileName):
             print(newfilename)
             cv2.imwrite(newfilename, cropped_image)
             current_w = current_w + delta
-        current_h = current_h + deltas
+        current_h = current_h + delta
