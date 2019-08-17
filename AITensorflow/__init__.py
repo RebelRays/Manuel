@@ -34,7 +34,7 @@ def getNotSockOrSock(image):
     result = np.argmax(prediction[0])
     return result
 
-ImageSubfolder = "DataRecording\\Images"
+ImageSubfolder = "./DataRecording/Images"
 SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 def generateboxes(ImageFileName):
     boxesContainingSock = []
@@ -55,16 +55,18 @@ def generateboxes(ImageFileName):
         while current_w+delta+size <= w:
             boxno = boxno +1
             cropped_image = original[current_h+cropped_from:current_h+cropped_from+size, current_w:current_w+size]
-            plt.imshow(cropped_image)
-            plt.show()
+            #plt.imshow(cropped_image)
+            #plt.show()
 
             result = getNotSockOrSock(cropped_image)
-            newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+            newfilename = ImageSubfolder + "/" + "NotSock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
             if(result == 1):
-                newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+                newfilename = ImageSubfolder + "/" + "Sock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
                 boxesContainingSock.append((current_h, current_w))
             
             print(newfilename)
             cv2.imwrite(newfilename, cropped_image)
             current_w = current_w + delta
         current_h = current_h + delta
+    return boxesContainingSock
+    
