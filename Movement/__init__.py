@@ -17,8 +17,8 @@ class HandleEngines:
     IN4 = -1
 
     #is set fromoutside?
-    SetOnTime=0.05
-    SetOffTime=0.005
+    SetOnTime=0.02
+    SetOffTime=0.05
 
     """description of class"""
     def MoveLeftWheels(self, command):
