@@ -1,11 +1,16 @@
 from picamera import PiCamera
 from time import sleep
 from datetime import datetime
-
+from fractions import Fraction
 
 cam = None
 class CameraHandler:
 
+    def makeBrighter2(self):
+        global cam
+        cam.framerate=Fraction(1, 6)
+        cam.shutter_speed=2000000
+        cam.iso = 800
     def makeBrighter(self):
         global cam
         cam.iso = 800

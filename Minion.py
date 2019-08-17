@@ -108,6 +108,9 @@ def ExecCommand(user_command):
     elif(user_command.upper() == 'BRIGHTER'):
         camera.makeBrighter()
         print("makeBrighter")
+    elif(user_command.upper() == 'BRIGHTER2'):
+        camera.makeBrighter2()
+        print("makeBrighter")
     elif(user_command.upper() == 'BRIGHTERRESET'):
         camera.resetExposure()
         print("resetExposure")
