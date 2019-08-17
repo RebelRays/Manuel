@@ -75,11 +75,14 @@ class HandleEngines:
         LoopRegulateSpeedTimer = t
         t.start()
         return
+    def setSpeed(self, onTime, offTime):
+        self.SetOnTime=onTime
+        self.SetOffTime= offTime
     def cleanup(self):
         global LoopRegulateSpeedTimer
         LoopRegulateSpeedTimer = None
     def LoopRegulateSpeed(self):
-        while LoopRegulateSpeedTimer is None:
+        while LoopRegulateSpeedTimer is not None:
             gpio.output(self.EnableRightEngines, True)
             gpio.output(self.EnableLeftEngines, True)
             time.sleep(self.SetOnTime)
