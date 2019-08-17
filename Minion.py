@@ -222,7 +222,7 @@ def ExecCommand(user_command):
 
         NO_OF_SEARCHTURNS_ALLOWED = 5
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
-            imagename = camera.takePicture()
+            imagename = camera.fastPic()
             #res = HunterAI.Descision(imagename)
             boxes = AITensorflow.generateboxes(imagename)
 
