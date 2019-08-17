@@ -97,6 +97,10 @@ def ExecCommand(user_command):
             ExecCommand(command)
         ExecCommand("S")
         RecordInverseMoves.clear()
+    elif(user_command.upper() == 'SLOWEST'):
+        engines.SetOnTime = 0.01
+        engines.SetOffTime = 0.01
+        print("Set to Slow")
     elif(user_command.upper() == 'SLOW'):
         engines.SetOnTime = 0.02
         engines.SetOffTime = 0.01
@@ -236,6 +240,10 @@ def ExecCommand(user_command):
                     closestbox = box
             if(closestbox is not None):
                 if(closestbox[0] < 60):
+                    if(usDistance.UltraDistance < 0.18):
+                        print("Bump stop")
+                        NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+                        continue
                     print("forward adjust")
                     ExecCommand("F")
                     ExecCommand("W")
