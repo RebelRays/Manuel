@@ -99,7 +99,7 @@ def ExecCommand(user_command):
         RecordInverseMoves.clear()
     elif(user_command.upper() == 'SLOWEST'):
         engines.SetOnTime = 0.01
-        engines.SetOffTime = 0.02
+        engines.SetOffTime = 0.2
         print("Set to Slow")
     elif(user_command.upper() == 'SLOW'):
         engines.SetOnTime = 0.02
