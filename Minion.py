@@ -244,6 +244,7 @@ def ExecCommand(user_command):
                         print("Bump stop")
                         NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
                         continue
+                    print("Ultrasound Distance = " +str(usDistance.UltraDistance))
                     print("forward adjust")
                     ExecCommand("F")
                     ExecCommand("W")
