@@ -17,6 +17,7 @@ class CameraHandler:
     def resetExposure(self):
         global cam
         cam.iso = 0
+        cam.shutter_speed=0
     def initFastPic(self):
         global cam
         if(cam is None):

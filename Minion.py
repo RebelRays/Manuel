@@ -185,7 +185,7 @@ def ExecCommand(user_command):
     #generateboxes
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
-        imagename = camera.takePicture()
+        imagename = camera.fastPic()
         boxes = AITensorflow.generateboxes(imagename)
         print(boxes)
     elif(user_command.upper() == 'RANDOME'):
