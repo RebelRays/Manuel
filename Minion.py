@@ -100,6 +100,10 @@ def ExecCommand(user_command):
     elif(user_command.upper() == 'SLOWEST'):
         engines.setSpeed(0.01, 2)
         print("Set to SLOWEST")
+    elif(user_command.upper() == 'SLOW2'):
+        engines.SetOnTime = 0.01
+        engines.SetOffTime = 0.01
+        print("Set to Slow")
     elif(user_command.upper() == 'SLOW'):
         engines.SetOnTime = 0.02
         engines.SetOffTime = 0.01
