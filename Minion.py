@@ -271,5 +271,6 @@ try:
 finally:
     usDistance.StopMeasuring()
     engines.cleanup()
-    ardy.cleanup()  
+    ardy.cleanup()
+    time.sleep(0.8)
     gpio.cleanup() # this ensures a clean exit

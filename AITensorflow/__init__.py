@@ -34,7 +34,7 @@ def getNotSockOrSock(image):
     result = np.argmax(prediction[0])
     return result
 
-ImageSubfolder = ".\\DataRecording\\Images"
+ImageSubfolder = "DataRecording\\Images"
 SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 def generateboxes(ImageFileName):
     boxesContainingSock = []
