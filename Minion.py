@@ -63,8 +63,8 @@ engines.IN3 = IN3
 engines.IN4 = IN4
 engines.RobotStop()
 
-engines.SetOnTime = 0.05
-engines.SetOffTime = 0.01 
+engines.SetOnTime = 0.01
+engines.SetOffTime = 0.06 
 engines.RegulateSpeed()
 
 engines.RobotStop()
