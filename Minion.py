@@ -218,6 +218,42 @@ def ExecCommand(user_command):
                 ExecCommand("W")
                 ExecCommand("S")
                 ExecCommand("PIC")
+    elif(user_command.upper() == 'HUNT2' or user_command.upper() == 'HUNTER2'):
+
+        NO_OF_SEARCHTURNS_ALLOWED = 5
+        while(NO_OF_SEARCHTURNS_ALLOWED > 0):
+            imagename = camera.takePicture()
+            #res = HunterAI.Descision(imagename)
+            boxes = AITensorflow.generateboxes(imagename)
+
+            #AimingFor = (60,300)
+            closestbox = None
+            mindiffy = 10000
+            for box in boxes:
+                diffy = box[0]-60
+                if(diffy < mindiffy):
+                    mindiffy = diffy
+                    closestbox = box
+            if(closestbox is not None):
+                if(closestbox[0] < 60):
+                    print("forward adjust")
+                    ExecCommand("F")
+                    ExecCommand("W")
+                    ExecCommand("S")
+                elif(closestbox[1] < 300):
+                    print("left adjust")
+                    ExecCommand("R")
+                    ExecCommand("W")
+                    ExecCommand("S")
+                else:
+                    print("Perfect spot")
+                    break
+            else:
+                print("left searching")
+                ExecCommand("L")
+                ExecCommand("W")
+                ExecCommand("S")
+                NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
     elif(user_command.upper() == 'HUNT' or user_command.upper() == 'HUNTER'):
         NO_OF_SEARCHTURNS_ALLOWED = 5
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
