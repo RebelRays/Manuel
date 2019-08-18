@@ -231,7 +231,7 @@ def ExecCommand(user_command):
                 ExecCommand("PIC")
     elif(user_command.upper() == 'HUNT2' or user_command.upper() == 'HUNTER2'):
 
-        NO_OF_SEARCHTURNS_ALLOWED = 5
+        NO_OF_SEARCHTURNS_ALLOWED = 7
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.fastPic()
             #res = HunterAI.Descision(imagename)
@@ -270,6 +270,7 @@ def ExecCommand(user_command):
                 ExecCommand("W")
                 ExecCommand("S")
                 NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+            NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
     elif(user_command.upper() == 'HUNT' or user_command.upper() == 'HUNTER'):
         NO_OF_SEARCHTURNS_ALLOWED = 5
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
