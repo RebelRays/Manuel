@@ -3,17 +3,20 @@ import time
 
 serialport = "/dev/ttyACM0" #"COM3"
 
-
-try: 
-    ser = serial.Serial(serialport, 9800, timeout=1)
-except: 
-    ser = serial.Serial("/dev/ttyACM1", 9800, timeout=1)
-
 ##ser.close()
 
-
+ser = None
 class ArduinoCommunication:
+    def connect(self):
+        global ser
+        try: 
+            ser = serial.Serial(serialport, 9800, timeout=1)
+        except: 
+            ser = serial.Serial("/dev/ttyACM1", 9800, timeout=1)
+    
     def printServoLocations(self):
+        if(ser is None):
+            self.connect()
         ser.write(b'g')
         #time.sleep(.5)
         #Line = ser.readlines()
@@ -21,6 +24,8 @@ class ArduinoCommunication:
 
     #ardy.MoveServo('2',10)
     def MoveServo(self, ServoNo, Angle):
+        if(ser is None):
+            self.connect()
         ser.writelines
         ser.write(b's')
         servoStr = ServoNo.encode('ascii')
@@ -52,6 +57,8 @@ class ArduinoCommunication:
         #time.sleep(0.5)
         #return ser.readline()
     def MoveServo2(self, ServoNo, Angle):
+        if(ser is None):
+            self.connect()
         ser.writelines
         ser.write(b's')
         servoStr = ServoNo.encode('ascii')
@@ -82,9 +89,13 @@ class ArduinoCommunication:
         #time.sleep(0.5)
         #return ser.readline()
     def printAll(self):
+        if(ser is None):
+            self.connect()
         while ser.in_waiting > 0:
             print(ser.readline())
     def pingArdy(self):
+        if(ser is None):
+            self.connect()
         print("Ping Ardy")
         ser.write(b'p')
         #time.sleep(1)
@@ -96,7 +107,9 @@ class ArduinoCommunication:
         #print(ser.readlines())
     def cleanup(self):
         print("ArduinoCommunication -> Cleanup")
-        ser.close()
+        if(ser is not None):
+            ser.close()
+        ser = None
     
-ardy = ArduinoCommunication()
+#ardy = ArduinoCommunication()
 print("Ready")
