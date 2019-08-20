@@ -106,6 +106,7 @@ class ArduinoCommunication:
         #time.sleep(0.5)
         #print(ser.readlines())
     def cleanup(self):
+        global ser
         print("ArduinoCommunication -> Cleanup")
         if(ser is not None):
             ser.close()
