@@ -22,7 +22,7 @@ def load_model():
     tf.keras.layers.Dense(2, activation='softmax')
     ])
 
-    modelfile= "tensormodel/cp-0055.ckpt"
+    modelfile= "tensormodel/cp2-0045.ckpt"
     model2.load_weights(modelfile)
     model = model2
 
