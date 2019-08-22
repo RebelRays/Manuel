@@ -197,7 +197,14 @@ def ExecCommand(user_command):
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
         imagename = camera.fastPic()
+        camera.closeCamera() #because eletricity
+        onetime = engines.SetOnTime
+        offtime = engines.SetOffTime
+        engines.SetOnTime=0.1
+        engines.SetOffTime=2
         boxes = AITensorflow.generateboxes(imagename)
+        engines.SetOnTime=engines.SetOnTime
+        engines.SetOffTime=engines.SetOffTime
         print(boxes)
     elif(user_command.upper() == 'RANDOME'):
         ExecCommand("PIC")
@@ -234,6 +241,7 @@ def ExecCommand(user_command):
         NO_OF_SEARCHTURNS_ALLOWED = 7
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.fastPic()
+            camera.closeCamera() #because eletricity
             #res = HunterAI.Descision(imagename)
             boxes = AITensorflow.generateboxes(imagename)
 
