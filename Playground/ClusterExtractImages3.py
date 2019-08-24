@@ -6,6 +6,8 @@ import cv2
 import matplotlib.pyplot as plt
 
 model = None
+TemplateDir = "E:\\R2D2\\images\\AllImages"
+SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 
 def load_model():
     global model
@@ -22,7 +24,7 @@ def load_model():
     tf.keras.layers.Dense(2, activation='softmax')
     ])
 
-    modelfile= "tensormodel/cp-04-0040.ckpt"
+    modelfile= "E:\\AIPlay\\tensor\\training_15\\cp-04-0040.ckpt"
     model2.load_weights(modelfile)
     model = model2
 
@@ -30,16 +32,17 @@ def getNotSockOrSock(image):
     if(model is None):
         load_model()
     resized = cv2.resize(image, (120,120))
+    resized=resized/255
     prediction = model.predict(np.array([resized]))
     result = np.argmax(prediction[0])
     return result
 
-ImageSubfolder = "./DataRecording/Images"
-SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
+ImageSubfolder = SubpartsDir
+#SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 def generateboxes(ImageFileName):
     boxesContainingSock = []
     original = cv2.imread(ImageFileName)
-    justthefilename = ImageFileName.split('/')[-1]
+    justthefilename = ImageFileName.split('\\')[-1]
     justthefilename  = justthefilename.split('.')[0]
     print("justthefilename " + justthefilename)
     cropped_from = 50
@@ -59,9 +62,9 @@ def generateboxes(ImageFileName):
             #plt.show()
 
             result = getNotSockOrSock(cropped_image)
-            newfilename = ImageSubfolder + "/" + "NotSock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+            newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
             if(result == 1):
-                newfilename = ImageSubfolder + "/" + "Sock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+                newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
                 boxesContainingSock.append((current_h, current_w))
             
             print(newfilename)
@@ -70,3 +73,7 @@ def generateboxes(ImageFileName):
         current_h = current_h + delta
     return boxesContainingSock
     
+
+for file in os.listdir(TemplateDir):
+    filename = TemplateDir + "\\" + os.fsdecode(file)
+    generateboxes(filename)

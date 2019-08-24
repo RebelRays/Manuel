@@ -6,40 +6,49 @@ import cv2
 import matplotlib.pyplot as plt
 
 model = None
+TemplateDir = "E:\\R2D2\\images\\AllImages"
+SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 
 def load_model():
     global model
     model2 = tf.keras.models.Sequential([
-    tf.keras.layers.Conv2D(60, (3, 3), activation='relu', input_shape=(120, 120,3)),
-    tf.keras.layers.MaxPooling2D((2, 2)),
-    tf.keras.layers.Conv2D(15, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D((2, 2)),
-    #tf.keras.layers.Conv2D(12, (3, 3), activation='relu'),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(8, activation='relu'),
-    tf.keras.layers.Dropout(0.4),
-    #tf.keras.layers.Dense(2, activation='sigmoid')
-    tf.keras.layers.Dense(2, activation='softmax')
+    tf.keras.layers.Conv2D(40, (3, 3), activation='relu', input_shape=(60,60, 3)),
+  tf.keras.layers.MaxPooling2D((2, 2)),
+  tf.keras.layers.Dropout(0.2),
+  tf.keras.layers.Conv2D(20, (3, 3), activation='relu'),
+  tf.keras.layers.MaxPooling2D((2, 2)),
+  #tf.keras.layers.Conv2D(12, (3, 3), activation='relu'),
+  tf.keras.layers.Flatten(),
+  tf.keras.layers.Dense(8, activation='relu'),
+  tf.keras.layers.Dropout(0.3),
+  #tf.keras.layers.Dense(2, activation='sigmoid')
+  tf.keras.layers.Dense(2, activation='softmax')
     ])
 
-    modelfile= "tensormodel/cp-04-0040.ckpt"
+    
+    modelfile= "E:\\AIPlay\\tensor\\training_16\\cp_60-60_40-d-20_0015.ckpt"
     model2.load_weights(modelfile)
     model = model2
 
 def getNotSockOrSock(image):
     if(model is None):
         load_model()
-    resized = cv2.resize(image, (120,120))
+    resized = cv2.resize(image, (60,60))
+    resized=resized/255
     prediction = model.predict(np.array([resized]))
-    result = np.argmax(prediction[0])
-    return result
+    if(prediction[0][1]>0.8):
+        return 1
+    return 0
 
-ImageSubfolder = "./DataRecording/Images"
-SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
+    #result = np.argmax(prediction[0])
+    #return result
+
+ImageSubfolder = SubpartsDir
+#SubpartsDir = "E:\\R2D2\\images\\Crop\\Subparts"
 def generateboxes(ImageFileName):
     boxesContainingSock = []
     original = cv2.imread(ImageFileName)
-    justthefilename = ImageFileName.split('/')[-1]
+    justthefilename = ImageFileName.split('\\')[-1]
     justthefilename  = justthefilename.split('.')[0]
     print("justthefilename " + justthefilename)
     cropped_from = 50
@@ -59,9 +68,9 @@ def generateboxes(ImageFileName):
             #plt.show()
 
             result = getNotSockOrSock(cropped_image)
-            newfilename = ImageSubfolder + "/" + "NotSock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+            newfilename = ImageSubfolder + "\\" + "NotSock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
             if(result == 1):
-                newfilename = ImageSubfolder + "/" + "Sock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+                newfilename = ImageSubfolder + "\\" + "Sock" + "\\" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
                 boxesContainingSock.append((current_h, current_w))
             
             print(newfilename)
@@ -70,3 +79,7 @@ def generateboxes(ImageFileName):
         current_h = current_h + delta
     return boxesContainingSock
     
+
+for file in os.listdir(TemplateDir):
+    filename = TemplateDir + "\\" + os.fsdecode(file)
+    generateboxes(filename)
