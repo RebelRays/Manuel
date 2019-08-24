@@ -6,9 +6,10 @@ import cv2
 import matplotlib.pyplot as plt
 
 model = None
-
+modelInputDim = (120,120)
 def load_model():
     global model
+    global modelInputDim
     model2 = tf.keras.models.Sequential([
     tf.keras.layers.Conv2D(60, (3, 3), activation='relu', input_shape=(120, 120,3)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -25,10 +26,11 @@ def load_model():
     modelfile= "tensormodel/cp-05-0025.ckpt"
     model2.load_weights(modelfile)
     model = model2
+    modelInputDim = (120,120)
 
 def load_model2():
     global model
-
+    global modelInputDim
     model2 = tf.keras.models.Sequential([
     tf.keras.layers.Conv2D(40, (3, 3), activation='relu', input_shape=(60,60, 3)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -46,11 +48,12 @@ def load_model2():
     modelfile= "tensormodel/cp_60-60_40-d-20_0020.ckpt"
     model2.load_weights(modelfile)
     model = model2
+    modelInputDim = (60,60)
 
 def getNotSockOrSock(image):
     if(model is None):
         load_model()
-    resized = cv2.resize(image, (120,120))
+    resized = cv2.resize(image, modelInputDim)
     prediction = model.predict(np.array([resized]))
     result = np.argmax(prediction[0])
     return result
