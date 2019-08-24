@@ -45,7 +45,7 @@ def load_model2():
     tf.keras.layers.Dense(2, activation='softmax')
     ])
 
-    modelfile= "tensormodel/cp_60-60_40-d-20_0020.ckpt"
+    modelfile= "tensormodel/cp_60-60_40-d-20-001_0035.ckpt"
     model2.load_weights(modelfile)
     model = model2
     modelInputDim = (60,60)
