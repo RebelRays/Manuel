@@ -26,6 +26,27 @@ def load_model():
     model2.load_weights(modelfile)
     model = model2
 
+def load_model2():
+    global model
+
+    model2 = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(40, (3, 3), activation='relu', input_shape=(60,60, 3)),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Dropout(0.05),
+    tf.keras.layers.Conv2D(20, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    #tf.keras.layers.Conv2D(12, (3, 3), activation='relu'),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(8, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    #tf.keras.layers.Dense(2, activation='sigmoid')
+    tf.keras.layers.Dense(2, activation='softmax')
+    ])
+
+    modelfile= "tensormodel/cp_60-60_40-d-20_0020.ckpt"
+    model2.load_weights(modelfile)
+    model = model2
+
 def getNotSockOrSock(image):
     if(model is None):
         load_model()
