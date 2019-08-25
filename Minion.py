@@ -196,6 +196,8 @@ def ExecCommand(user_command):
     #generateboxes
     elif(user_command.upper() == 'MODEL2'):
         AITensorflow.load_model2()
+    elif(user_command.upper() == 'MODEL3'):
+        AITensorflow.load_model3()
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
         imagename = camera.fastPic()
