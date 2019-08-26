@@ -55,7 +55,7 @@ def load_model4():
     global modelInputDim
 
     #model2 =tf.keras.models.load_model("tensormodel/best")
-    model = tf.keras.models.Sequential([
+    model2 = tf.keras.models.Sequential([
     tf.keras.layers.Conv2D(42, (3, 3), activation='relu', input_shape=(60,60, 3)),
     tf.keras.layers.MaxPooling2D((2, 2)),
     tf.keras.layers.Dropout(0.04),
