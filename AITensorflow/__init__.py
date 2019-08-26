@@ -50,6 +50,14 @@ def load_model2():
     model = model2
     modelInputDim = (60,60)
 
+def load_model4():
+    global model
+    global modelInputDim
+
+    model2 =tf.keras.models.load_model("tensormodel/sock6060")
+    model = model2
+    modelInputDim = (60,60)
+
 def load_model3():
     global model
     global modelInputDim
@@ -76,6 +84,7 @@ def getNotSockOrSock(image):
     if(model is None):
         load_model()
     resized = cv2.resize(image, modelInputDim)
+    resized = resized/255
     prediction = model.predict(np.array([resized]))
     result = np.argmax(prediction[0])
     return result
