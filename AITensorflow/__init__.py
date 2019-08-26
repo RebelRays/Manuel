@@ -54,7 +54,7 @@ def load_model4():
     global model
     global modelInputDim
 
-    model2 =tf.keras.models.load_model("tensormodel/sock6060")
+    model2 =tf.keras.models.load_model("tensormodel/best")
     model = model2
     modelInputDim = (60,60)
 
