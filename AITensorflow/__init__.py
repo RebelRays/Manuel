@@ -166,7 +166,7 @@ def generateboxes2(ImageFileName):
         if(result == 1):
             newfilename = ImageSubfolder + "/" + "Sock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
             boxesContainingSock.append((current_h, current_w))
-            cv.Rectangle(imageswithboxes, (current_w, current_h), (current_w+size_w, current_h+size_h), (255,0,0), thickness=1, lineType=8, shift=0)
+            cv2.Rectangle(imageswithboxes, (current_w, current_h), (current_w+size_w, current_h+size_h), (255,0,0), thickness=1, lineType=8, shift=0)
         print(newfilename)
         cv2.imwrite(newfilename, cropped_image)
         newfilenameforimageswithboxes = ImageSubfolder + "/" + "box_" + justthefilename + ".png"
