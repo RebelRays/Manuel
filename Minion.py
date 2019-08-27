@@ -253,14 +253,30 @@ def ExecCommand(user_command):
             print(boxes)
             #AimingFor = (60,300)
             closestbox = None
-            mindiffy = 10000
+            maxdiffy = -1
             for box in boxes:
                 diffy = box[0]
-                if(diffy < mindiffy):
-                    mindiffy = diffy
+                if(diffy > maxdiffy):
+                    maxdiffy = diffy
                     closestbox = box
+            
             if(closestbox is not None):
-                if(closestbox[0] < 60):
+                if(closestbox[0] >= 360):
+                    if(closestbox[1] >= 320):
+                        print("Perfect spot")
+                        break
+                    elif(closestbox[1] < 320):
+                        print("Close Adjustment Left")
+                        ExecCommand("B")
+                        ExecCommand("W")
+                        ExecCommand("S")
+                        ExecCommand("L")
+                        ExecCommand("W")
+                        ExecCommand("S")
+                        ExecCommand("F")
+                        ExecCommand("W")
+                        ExecCommand("S")                
+                else: #if(closestbox[0] < 320):
                     if(usDistance.UltraDistance < 0.18):
                         print("Bump stop")
                         NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
@@ -270,14 +286,14 @@ def ExecCommand(user_command):
                     ExecCommand("F")
                     ExecCommand("W")
                     ExecCommand("S")
-                elif(closestbox[1] < 300):
-                    print("left adjust")
-                    ExecCommand("R")
-                    ExecCommand("W")
-                    ExecCommand("S")
-                else:
-                    print("Perfect spot")
-                    break
+                #elif(closestbox[1] < 300):
+                #    print("left adjust")
+                #    ExecCommand("R")
+                #    ExecCommand("W")
+                #    ExecCommand("S")
+                #else:
+                #    print("Perfect spot")
+                #    break
             else:
                 print("left searching")
                 ExecCommand("L")
