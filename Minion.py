@@ -208,9 +208,9 @@ def ExecCommand(user_command):
         offtime = engines.SetOffTime
         engines.SetOnTime=0.1
         engines.SetOffTime=2
-        boxes = AITensorflow.generateboxes(imagename)
-        engines.SetOnTime=engines.SetOnTime
-        engines.SetOffTime=engines.SetOffTime
+        boxes = AITensorflow.generateboxes2(imagename)
+        engines.SetOnTime=onetime
+        engines.SetOffTime=offtime
         print(boxes)
     elif(user_command.upper() == 'RANDOME'):
         ExecCommand("PIC")
@@ -249,13 +249,13 @@ def ExecCommand(user_command):
             imagename = camera.fastPic()
             camera.closeCamera() #because eletricity
             #res = HunterAI.Descision(imagename)
-            boxes = AITensorflow.generateboxes(imagename)
-
+            boxes = AITensorflow.generateboxes2(imagename)
+            print(boxes)
             #AimingFor = (60,300)
             closestbox = None
             mindiffy = 10000
             for box in boxes:
-                diffy = box[0]-60
+                diffy = box[0]
                 if(diffy < mindiffy):
                     mindiffy = diffy
                     closestbox = box

@@ -142,3 +142,34 @@ def generateboxes(ImageFileName):
         current_h = current_h + delta
     return boxesContainingSock
     
+def generateboxes2(ImageFileName):
+    boxesContainingSock = []
+    original = cv2.imread(ImageFileName)
+    imageswithboxes = original.copy()
+    justthefilename = ImageFileName.split('/')[-1]
+    justthefilename  = justthefilename.split('.')[0]
+    print("justthefilename " + justthefilename)
+    
+    current_h = 0
+    size = 240
+    delta = 60
+    boxno=0
+    
+    imageboxes = [(0,0), (120,0), (240,0),(360,0),(0,160), (120,160), (240,160),(360,160),(0,320), (120,320), (240,320),(360,320),(0,480), (120,480), (240,480),(360,480)]
+
+    size_w = 160
+    size_h = 120
+    for current_h, current_w in imageboxes:
+        cropped_image = original[current_h:current_h+size_h, current_w:current_w+size_w]
+        result = getNotSockOrSock(cropped_image)
+        newfilename = ImageSubfolder + "/" + "NotSock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+        if(result == 1):
+            newfilename = ImageSubfolder + "/" + "Sock" + "/" + justthefilename + "_" + str(current_h) + "_" + str(current_w) + ".png"
+            boxesContainingSock.append((current_h, current_w))
+            cv.Rectangle(imageswithboxes, (current_w, current_h), (current_w+size_w, current_h+size_h), (255,0,0), thickness=1, lineType=8, shift=0)
+        print(newfilename)
+        cv2.imwrite(newfilename, cropped_image)
+        newfilenameforimageswithboxes = ImageSubfolder + "/" + "box_" + justthefilename + ".png"
+        cv2.imwrite(newfilenameforimageswithboxes, imageswithboxes)
+
+    return boxesContainingSock
