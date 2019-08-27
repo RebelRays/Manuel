@@ -244,7 +244,7 @@ def ExecCommand(user_command):
                 ExecCommand("PIC")
     elif(user_command.upper() == 'HUNT3'):
 
-        NO_OF_SEARCHTURNS_ALLOWED = 7
+        NO_OF_SEARCHTURNS_ALLOWED = 11
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.fastPic()
             camera.closeCamera() #because eletricity
