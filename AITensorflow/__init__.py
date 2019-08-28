@@ -50,6 +50,31 @@ def load_model2():
     model = model2
     modelInputDim = (60,60)
 
+def load_model5():
+    global model
+    global modelInputDim
+
+    #model2 =tf.keras.models.load_model("tensormodel/best")
+    model2 = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(44, (3, 3), activation='relu', input_shape=(60,60, 3)),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Dropout(0.04),
+    tf.keras.layers.Conv2D(26, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    #tf.keras.layers.Conv2D(12, (3, 3), activation='relu'),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(8, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    #tf.keras.layers.Dense(2, activation='sigmoid')
+    tf.keras.layers.Dense(2, activation='softmax')
+    ])
+    
+    
+    modelfile= "tensormodel/cp_60-60_44-d-26-002_0136.ckpt"
+    model2.load_weights(modelfile)
+    model = model2
+    modelInputDim = (60,60)
+
 def load_model4():
     global model
     global modelInputDim
