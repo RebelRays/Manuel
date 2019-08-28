@@ -277,13 +277,18 @@ def ExecCommand(user_command):
                         ExecCommand("F")
                         ExecCommand("W")
                         ExecCommand("S")
+                elif(closestbox[1] >= 320):
+                    print("Center")
+                    ExecCommand("R")
+                    ExecCommand("W")
+                    ExecCommand("S")
                 else: #if(closestbox[0] < 320):
                     if(usDistance.UltraDistance < 0.18):
                         print("Bump stop")
                         NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
                         continue
                     if (closestbox[0] <= 240):
-                        ExecCommand("SLOW3")
+                        ExecCommand("SLOW2")
                     else:
                         ExecCommand("SLOWEST")
                     print("Ultrasound Distance = " +str(usDistance.UltraDistance))
