@@ -70,7 +70,7 @@ def load_model5():
     ])
     
     
-    modelfile= "tensormodel/cp_60-60_44-d-26-002_0136.ckpt"
+    modelfile= "tensormodel/cp_60-60_44-d-26-003_0061.ckpt"
     model2.load_weights(modelfile)
     model = model2
     modelInputDim = (60,60)
@@ -198,3 +198,61 @@ def generateboxes2(ImageFileName):
         cv2.imwrite(newfilenameforimageswithboxes, imageswithboxes)
 
     return boxesContainingSock
+
+def isSock(image, x1, y1, x2, y2):
+    cropped_image = image[y1:y2, x1:x2]
+    result = getNotSockOrSock(cropped_image)
+    return result==1
+
+#Generated boxes
+def generateboxes3(ImageFileName):    
+    boxes = generateboxes2(ImageFileName)
+    original = cv2.imread(ImageFileName)
+    imageswithboxes = original.copy()
+
+    justthefilename = ImageFileName.split('/')[-1]
+    justthefilename  = justthefilename.split('.')[0]
+
+    alreadyTaken = {}
+    delta_move = 10
+    box_y_size = 120
+    box_x_size = 160
+    for box in boxes:
+        if box in alreadyTaken:
+            continue
+        else:
+            alreadyTaken[box]=True # .append(box)
+            y, x = box
+            min_x = x
+            max_x = x + box_x_size
+            max_y= y+ box_y_size
+            min_y=y
+            while x - delta_move >= 0:
+                x = x - delta_move
+                if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
+                    min_x=x+box_x_size
+
+            y, x = box
+            while x + box_x_size < 640:
+                x = x + delta_move
+                if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
+                    max_x=x
+
+            y, x = box            
+            while y + box_y_size < 480:
+                y = y + delta_move
+                if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
+                    max_y=y
+            
+            y, x = box
+            while y - delta_move >= 0:
+                y = y - delta_move
+                if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
+                    min_y=y
+            
+            cv2.rectangle(imageswithboxes, (min_x, min_y), (max_x+box_x_size, max_y+box_y_size), (255,10,10), thickness=1, lineType=8, shift=0)
+    
+    newfilenameforimageswithboxes = ImageSubfolder + "/" + "box2_" + justthefilename + ".png"
+    cv2.imwrite(newfilenameforimageswithboxes, imageswithboxes)
+
+    return boxes

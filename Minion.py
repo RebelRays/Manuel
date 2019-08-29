@@ -245,7 +245,7 @@ def ExecCommand(user_command):
                 ExecCommand("S")
                 ExecCommand("PIC")
     elif(user_command.upper() == 'HUNT3'):
-
+        ExecCommand("SET4110")
         NO_OF_SEARCHTURNS_ALLOWED = 11
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.fastPic()
@@ -261,13 +261,24 @@ def ExecCommand(user_command):
                 if(diffy > maxdiffy):
                     maxdiffy = diffy
                     closestbox = box
-            
+            allboxesathatahight = []
+            thereIsABoxWithMin320 = False
+            MinX = 10000
+            for box in boxes:
+                if (maxdiffy == box[0]):
+                    allboxesathatahight.append(box)
+                    if(closestbox[1] >= 320):
+                        thereIsABoxWithMin320=True
+                    MinX = min(MinX, box[1])
+
             if(closestbox is not None):
                 if(closestbox[0] >= 360):
-                    if(closestbox[1] >= 320):
+                    if (thereIsABoxWithMin320):#(closestbox[1] >= 320):
                         print("Perfect spot")
+                        ExecCommand("SET4170")
+                        #GoToDropPoint
                         break
-                    elif(closestbox[1] < 320):
+                    else:#elif(closestbox[1] < 320):
                         ExecCommand("SLOWEST")
                         print("Close Adjustment Left")
                         ExecCommand("B")
@@ -279,7 +290,7 @@ def ExecCommand(user_command):
                         ExecCommand("F")
                         ExecCommand("W")
                         ExecCommand("S")
-                elif(closestbox[1] >= 320):
+                elif(MinX): #(closestbox[1] >= 320):
                     print("Center")
                     ExecCommand("R")
                     ExecCommand("W")
