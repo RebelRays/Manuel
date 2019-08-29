@@ -276,7 +276,7 @@ def ExecCommand(user_command):
 
             if(closestbox is not None):
                 minx, miny, maxx,maxy = box
-                if(maxy >= 360):
+                if(maxy >= 320):
                     if (thereIsABoxWithMin320):#(closestbox[1] >= 320):
                         print("Perfect spot")
                         ExecCommand("SET4170")
