@@ -205,19 +205,22 @@ def isSock(image, x1, y1, x2, y2):
     return result==1
 
 #Generated boxes
-def generateboxes3(ImageFileName):    
+def generateboxes3(ImageFileName):
+    ImprovedBoxes = []    
     boxes = generateboxes2(ImageFileName)
     original = cv2.imread(ImageFileName)
     imageswithboxes = original.copy()
 
-    justthefilename = ImageFileName.split('/')[-1]
+    justthefilename = ImageFileName.split('\\')[-1]
     justthefilename  = justthefilename.split('.')[0]
 
     alreadyTaken = {}
-    delta_move = 10
+    delta_move = 5
     box_y_size = 120
     box_x_size = 160
+    i = 0
     for box in boxes:
+        i = i +1
         if box in alreadyTaken:
             continue
         else:
@@ -231,28 +234,34 @@ def generateboxes3(ImageFileName):
                 x = x - delta_move
                 if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
                     min_x=x+box_x_size
+                    break
 
             y, x = box
             while x + box_x_size < 640:
                 x = x + delta_move
                 if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
-                    max_x=x
+                    max_x=x #+ box_x_size
+                    break
 
             y, x = box            
             while y + box_y_size < 480:
                 y = y + delta_move
                 if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
                     max_y=y
+                    break
             
             y, x = box
             while y - delta_move >= 0:
                 y = y - delta_move
                 if (isSock(original, x,y,x+box_x_size, y+ box_y_size) == False):
-                    min_y=y
+                    min_y=y+box_y_size
+                    break
             
-            cv2.rectangle(imageswithboxes, (min_x, min_y), (max_x+box_x_size, max_y+box_y_size), (255,10,10), thickness=1, lineType=8, shift=0)
+            ImprovedBoxes.append((min_x, min_y, max_x, max_y))
+            cv2.rectangle(imageswithboxes, (min_x, min_y), (max_x, max_y), (255,i*20,i*10), thickness=1, lineType=8, shift=0)
     
-    newfilenameforimageswithboxes = ImageSubfolder + "/" + "box2_" + justthefilename + ".png"
+    newfilenameforimageswithboxes = ImageSubfolder + "\\" + "box2_" + justthefilename + ".png"
     cv2.imwrite(newfilenameforimageswithboxes, imageswithboxes)
 
-    return boxes
+    return ImprovedBoxes
+

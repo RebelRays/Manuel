@@ -244,6 +244,91 @@ def ExecCommand(user_command):
                 ExecCommand("W")
                 ExecCommand("S")
                 ExecCommand("PIC")
+    elif(user_command.upper() == 'HUNT4'):
+        ExecCommand("SET4110")
+        NO_OF_SEARCHTURNS_ALLOWED = 11
+        while(NO_OF_SEARCHTURNS_ALLOWED > 0):
+            imagename = camera.fastPic()
+            camera.closeCamera() #because eletricity
+            #res = HunterAI.Descision(imagename)
+            boxes = AITensorflow.generateboxes3(imagename)
+            print(boxes)
+            #AimingFor = (60,300)
+            closestbox = None
+            maxdiffy = -1
+            for box in boxes:
+                minx, miny, maxx,maxy = box
+                diffy = maxy
+                if(diffy > maxdiffy):
+                    maxdiffy = diffy
+                    closestbox = box
+            allboxesathatahight = []
+            thereIsABoxWithMin320 = False
+            MinX = 10000
+            for box in boxes:
+                minx, miny, maxx,maxy = box
+                
+                if (maxdiffy == maxy):
+                    allboxesathatahight.append(box)
+                    if(maxx >= 320):
+                        thereIsABoxWithMin320=True
+                    MinX = min(MinX, minx)
+
+            if(closestbox is not None):
+                minx, miny, maxx,maxy = box
+                if(maxy >= 360):
+                    if (thereIsABoxWithMin320):#(closestbox[1] >= 320):
+                        print("Perfect spot")
+                        ExecCommand("SET4170")
+                        #GoToDropPoint
+                        break
+                    else:#elif(closestbox[1] < 320):
+                        ExecCommand("SLOW3")
+                        print("Close Adjustment Left")
+                        ExecCommand("B")
+                        ExecCommand("W")
+                        ExecCommand("S")
+                        ExecCommand("L")
+                        ExecCommand("W")
+                        ExecCommand("S")
+                        ExecCommand("F")
+                        ExecCommand("W")
+                        ExecCommand("S")
+                elif(MinX >= 320): #(closestbox[1] >= 320):
+                    print("Center")
+                    ExecCommand("R")
+                    ExecCommand("W")
+                    ExecCommand("S")
+                else: #if(closestbox[0] < 320):
+                    if(usDistance.UltraDistance < 0.18):
+                        print("Bump stop")
+                        NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+                        continue
+                    if (maxy <= 240):
+                        ExecCommand("SLOW2")
+                    else:
+                        ExecCommand("SLOW3")
+                    print("Ultrasound Distance = " +str(usDistance.UltraDistance))
+                    print("forward adjust")
+                    ExecCommand("F")
+                    ExecCommand("W")
+                    ExecCommand("S")
+                #elif(closestbox[1] < 300):
+                #    print("left adjust")
+                #    ExecCommand("R")
+                #    ExecCommand("W")
+                #    ExecCommand("S")
+                #else:
+                #    print("Perfect spot")
+                #    break
+            else:
+                ExecCommand("SLOW3")
+                print("left searching")
+                ExecCommand("L")
+                ExecCommand("W")
+                ExecCommand("S")
+                NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
+            NO_OF_SEARCHTURNS_ALLOWED = NO_OF_SEARCHTURNS_ALLOWED - 1
     elif(user_command.upper() == 'HUNT3'):
         ExecCommand("SET4110")
         NO_OF_SEARCHTURNS_ALLOWED = 11
