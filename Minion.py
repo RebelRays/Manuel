@@ -245,7 +245,7 @@ def ExecCommand(user_command):
                 ExecCommand("S")
                 ExecCommand("PIC")
     elif(user_command.upper() == 'HUNT4'):
-        ExecCommand("SET4110")
+        ExecCommand("SET490")
         NO_OF_SEARCHTURNS_ALLOWED = 11
         while(NO_OF_SEARCHTURNS_ALLOWED > 0):
             imagename = camera.fastPic()
