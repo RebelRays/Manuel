@@ -202,6 +202,8 @@ def ExecCommand(user_command):
         AITensorflow.load_model4()
     elif(user_command.upper() == 'MODEL5'):
         AITensorflow.load_model5()
+    elif(user_command.upper() == 'MODEL6'):
+        AITensorflow.load_model6()
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
         imagename = camera.fastPic()
@@ -295,7 +297,7 @@ def ExecCommand(user_command):
                         ExecCommand("W")
                         ExecCommand("S")
                 elif(MinX >= 320): #(closestbox[1] >= 320):
-                    print("Center")
+                    print("Center, MinX = " + str(MinX))
                     ExecCommand("R")
                     ExecCommand("W")
                     ExecCommand("S")
