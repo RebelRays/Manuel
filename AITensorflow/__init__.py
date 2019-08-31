@@ -70,7 +70,7 @@ def load_model5():
     ])
     
     
-    modelfile= "tensormodel/cp_60-60_44-d-26-003_0061.ckpt"
+    modelfile= "tensormodel/cp_60-60_44-d-26-005_0092.ckpt"
     model2.load_weights(modelfile)
     model = model2
     modelInputDim = (60,60)

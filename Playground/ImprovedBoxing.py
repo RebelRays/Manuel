@@ -96,7 +96,7 @@ def generateboxes3(ImageFileName):
     justthefilename  = justthefilename.split('.')[0]
 
     alreadyTaken = {}
-    delta_move = 5
+    delta_move = 10
     box_y_size = 120
     box_x_size = 160
     i = 0
@@ -140,6 +140,7 @@ def generateboxes3(ImageFileName):
             
             ImprovedBoxes.append((min_x, min_y, max_x, max_y))
             cv2.rectangle(imageswithboxes, (min_x, min_y), (max_x, max_y), (255,i*20,i*10), thickness=1, lineType=8, shift=0)
+            
     
     newfilenameforimageswithboxes = ImageSubfolder + "\\" + "box2_" + justthefilename + ".png"
     cv2.imwrite(newfilenameforimageswithboxes, imageswithboxes)
