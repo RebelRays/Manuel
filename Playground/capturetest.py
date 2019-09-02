@@ -16,7 +16,7 @@ try:
 
     print(str(cam.shutter_speed))
     cam.start_preview()
-    sleep(2)
+    sleep(4)
     print("Capturing")
     cam.capture("imagename.png")
     print("Done Capturing")
