@@ -29,8 +29,12 @@ class CameraHandler:
             cam.resolution = (640,480)
             cam.rotation = 180
             if(makeBrighter):
+                print("Bright pic")
                 cam.iso=800
-                cam.shutter_speed=1000000
+                cam.shutter_speed = 6000000
+                cam.exposure_mode = 'off'
+                cam.iso = 800
+                cam.awb_mode = 'off'
             cam.start_preview()
             sleep(2)
 
