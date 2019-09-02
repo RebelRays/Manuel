@@ -28,8 +28,8 @@ class CameraHandler:
             cam = PiCamera()
             cam.resolution = (640,480)
             cam.rotation = 180
-            #cam.start_preview()
-            #sleep(1)
+            cam.start_preview()
+            sleep(2)
             if(makeBrighter):
                 print("Bright pic")
                 #cam.iso=800
