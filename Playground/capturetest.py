@@ -11,12 +11,13 @@ try:
     cam.resolution = (640,480)
     cam.rotation = 180
 
+    cam.start_preview()
+    sleep(4)
     cam.framerate=Fraction(1, 2)
     cam.shutter_speed = 2000000
 
     print(str(cam.shutter_speed))
-    cam.start_preview()
-    sleep(4)
+    
     print("Capturing")
     cam.capture("imagename.png")
     print("Done Capturing")
