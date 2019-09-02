@@ -2,6 +2,7 @@ from picamera import PiCamera
 from time import sleep
 from datetime import datetime
 from fractions import Fraction
+from PIL import Image
 
 makeBrighter= False
 
@@ -57,6 +58,10 @@ class CameraHandler:
         imagename = './DataRecording/Images/' + now_Str + ".png"
         print("Capturing")
         cam.capture(imagename)
+
+        im = Image.open('filename.jpg')
+        brightness = np.mean(im)
+        print("brightness = " + str(brightness))
         return imagename
     
     def takePicture(self):
