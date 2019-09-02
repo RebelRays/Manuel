@@ -3,6 +3,7 @@ from time import sleep
 from datetime import datetime
 from fractions import Fraction
 from PIL import Image
+import numpy as np
 
 cam = PiCamera()
 try:
