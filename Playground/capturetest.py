@@ -12,7 +12,7 @@ try:
     cam.rotation = 180
 
     cam.start_preview()
-    sleep(4)
+    sleep(8)
     cam.framerate=Fraction(1, 2)
     cam.shutter_speed = 2000000
 
