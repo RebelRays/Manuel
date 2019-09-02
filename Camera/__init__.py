@@ -3,6 +3,8 @@ from time import sleep
 from datetime import datetime
 from fractions import Fraction
 
+makeBrighter= False
+
 cam = None
 class CameraHandler:
 
@@ -12,20 +14,25 @@ class CameraHandler:
         cam.shutter_speed=2000000
         cam.iso = 800
     def makeBrighter(self):
-        global cam
-        cam.iso = 800
+        global makeBrighter
+        makeBrighter = True
+        #cam.iso = 800
     def resetExposure(self):
         global cam
         cam.iso = 0
         cam.shutter_speed=0
     def initFastPic(self):
         global cam
+        global makeBrighter
         if(cam is None):
             cam = PiCamera()
             cam.resolution = (640,480)
             cam.rotation = 180
+            if(makeBrighter):
+                cam.iso=800
+                cam.shutter_speed=1000000
             cam.start_preview()
-            sleep(3)
+            sleep(2)
 
     def closeCamera(self):
         global cam
