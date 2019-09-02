@@ -29,15 +29,17 @@ class CameraHandler:
             cam.resolution = (640,480)
             cam.rotation = 180
             cam.start_preview()
-            sleep(2)
+            sleep(1)
             if(makeBrighter):
                 print("Bright pic")
-                cam.iso=800
-                cam.shutter_speed = 6000000
-                cam.exposure_mode = 'off'
-                cam.iso = 800
-                cam.awb_mode = 'off'
-                
+                #cam.iso=800
+                cam.shutter_speed=1/2
+                cam.shutter_speed = 2000000
+                #cam.exposure_mode = 'off'
+                #cam.iso = 800
+                #cam.awb_mode = 'off'
+
+
     def closeCamera(self):
         global cam
         if(cam is not None):
