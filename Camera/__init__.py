@@ -39,7 +39,7 @@ class CameraHandler:
                 cam.shutter_speed = 3000000
                 print(str(cam.shutter_speed))
                 #cam.exposure_mode = 'off'
-                #cam.iso = 800
+                cam.iso = 800
                 #cam.awb_mode = 'off'
 
 
