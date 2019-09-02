@@ -29,7 +29,7 @@ class CameraHandler:
             cam.resolution = (640,480)
             cam.rotation = 180
             cam.start_preview()
-            sleep(2)
+            
             if(makeBrighter):
                 print("Bright pic")
                 #cam.iso=800
@@ -41,7 +41,7 @@ class CameraHandler:
                 #cam.exposure_mode = 'off'
                 #cam.iso = 800
                 #cam.awb_mode = 'off'
-
+            sleep(2)
 
     def closeCamera(self):
         global cam
@@ -55,6 +55,7 @@ class CameraHandler:
         
         now_Str = datetime.today().strftime('%Y%m%d-%H%M%S')
         imagename = './DataRecording/Images/' + now_Str + ".png"
+        print("Capturing")
         cam.capture(imagename)
         return imagename
     
