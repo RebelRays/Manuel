@@ -206,6 +206,8 @@ def ExecCommand(user_command):
         AITensorflow.load_model6()
     elif(user_command.upper() == 'MODEL7'):
         AITensorflow.load_model7()
+    elif(user_command.upper() == 'MODEL8'):
+        AITensorflow.load_model8()
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
         imagename = camera.fastPic()
@@ -526,6 +528,7 @@ try:
             ExecCommand(user_command)
         ExecCommand("S") #because I forget
 finally:
+    camera.closeCamera()
     usDistance.StopMeasuring()
     engines.cleanup()
     ardy.cleanup()
