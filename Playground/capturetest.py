@@ -11,7 +11,7 @@ try:
     cam.resolution = (640,480)
     cam.rotation = 180
 
-    cam.start_preview()
+    #cam.start_preview()
     sleep(8)
     cam.framerate=Fraction(1, 2)
     cam.shutter_speed = 2000000
