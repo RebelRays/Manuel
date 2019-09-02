@@ -204,6 +204,8 @@ def ExecCommand(user_command):
         AITensorflow.load_model5()
     elif(user_command.upper() == 'MODEL6'):
         AITensorflow.load_model6()
+    elif(user_command.upper() == 'MODEL7'):
+        AITensorflow.load_model7()
     elif(user_command.upper() == 'SOCK'):
         print("Boxes")
         imagename = camera.fastPic()
