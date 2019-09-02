@@ -33,13 +33,13 @@ class CameraHandler:
             if(makeBrighter):
                 print("Bright pic")
                 #cam.iso=800
-                cam.shutter_speed = 3000000
+                cam.shutter_speed = 2000000
                 print(str(cam.shutter_speed))
-                cam.framerate=1/3.0
-                cam.shutter_speed = 3000000
+                cam.framerate=Fraction(1, 2)
+                cam.shutter_speed = 2000000
                 print(str(cam.shutter_speed))
                 #cam.exposure_mode = 'off'
-                cam.iso = 800
+                #cam.iso = 800
                 #cam.awb_mode = 'off'
 
 
